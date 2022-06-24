@@ -159,7 +159,7 @@ int main()
 
     //Listing 4.17
     //использование операции new
-    int nights = 1001;
+    /*int nights = 1001;
     int *pt = new int;
     *pt = 1001;
 
@@ -171,7 +171,47 @@ int main()
     cout << *pd << " " << pd << " " << &pd << endl;
 
     cout << sizeof(pt) << " " << sizeof(*pt) << endl;
-    cout << sizeof(pd) << " " << sizeof(*pd) << endl;
+    cout << sizeof(pd) << " " << sizeof(*pd) << endl;*/
+
+    //Listing 4.18
+    //использование операции new для массивов
+    /*double *p3 = new double [3];
+    p3[0] = 0.2;
+    p3[1] = 0.5;
+    p3[2] = 0.8;
+
+    cout << p3[1] << endl;
+    p3 += 1;
+    cout << p3[0] << " " << p3[1] << endl;
+    p3 -= 1;
+    cout << p3[0] << " " << p3[1] << endl;
+    delete [] p3;*/
+
+    //Listing 4.19
+    //сложение указателей
+    double wages[3] = {10000.0, 20000.0, 30000.0};
+    short stacks[3] = {3, 2, 1};
+
+    double *pw = wages;
+    short *ps = &stacks[0];
+
+    cout << pw << " " << *pw << endl;
+    pw += 1;
+    cout << pw << " " << *pw << endl;
+    cout << ps << " " << *ps << endl;
+    ps += 1;
+    cout << ps << " " << *ps << endl;
+
+    cout << stacks[0] << " "
+         << stacks[1] << " "
+         << stacks[2] << endl;
+
+    cout << *stacks << " "
+         << *(stacks + 1) << " "
+         << *(stacks + 2) << endl;
+
+    cout << sizeof(wages) << endl;
+    cout << sizeof(pw) << endl;
 
     return 0;
 }
