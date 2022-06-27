@@ -189,7 +189,7 @@ int main()
 
     //Listing 4.19
     //сложение указателей
-    double wages[3] = {10000.0, 20000.0, 30000.0};
+    /*double wages[3] = {10000.0, 20000.0, 30000.0};
     short stacks[3] = {3, 2, 1};
 
     double *pw = wages;
@@ -211,7 +211,16 @@ int main()
          << *(stacks + 2) << endl;
 
     cout << sizeof(wages) << endl;
-    cout << sizeof(pw) << endl;
+    cout << sizeof(pw) << endl;*/
+
+    //Listing 4.20
+    //использование указателей на строки
+    char animal[20] = "bear";
+    const char *bird = "wren";
+    char *ps;
+    cout << animal << " " << bird << endl;
+
+
 
     return 0;
 }
