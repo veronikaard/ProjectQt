@@ -70,13 +70,13 @@ int main()
 
     //Listing 4.6
     //строковый ввод после числового
-    int year;
+    /*int year;
     (cin >> year).get();
     char address[80];
     //cin.getline(address, 80);
     cin >> address;
     cout << year << endl;
-    cout << address << endl;
+    cout << address << endl;*/
 
     //Listing 4.7
     //использование класса С++ string
