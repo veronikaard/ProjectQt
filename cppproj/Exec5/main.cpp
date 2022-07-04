@@ -67,12 +67,12 @@ int main()
 
     //Listing 5.20
     //вложенные циклы и двумерный массив
-    const char *cities[Cities] =
+    /*const char *cities[Cities] =
     {
         "Gribble City",
         "Gribbletown",
         "New Gribble",
-        "san Gribble",
+        "San Gribble",
         "Gribble Vista"
     };
 
@@ -90,7 +90,7 @@ int main()
         for (int year = 0; year < Years; ++year)
             cout << maxtemps[year][city] << "\t";
         cout << endl;
-    }
+    }*/
 
     return 0;
 }
