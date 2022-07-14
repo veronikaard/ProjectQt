@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <array>
+#include <string>
 
 using namespace std;
 
@@ -38,7 +40,18 @@ void show_polar(polar dapos);
 
 const int ArSize = 8;
 const int Mins_per_hr = 60;
+const int SIZE = 5;
+const int Seasons = 4;
+const int Len = 66;
+const int Divs = 6;
+const std::array< std::string, Seasons> Snames =
+{"Spring", "Summer", "Fall", "Winter"};
 
+void subdivide(char ar[], int low, int high, int level);
+void fill(std::array<double, Seasons> *pa);
+void show(std::array<double, Seasons> da);
+void display(const string sa[], int n);
+void countdown(int n);
 travel_time sum(travel_time t1, travel_time t2);
 void show_time(travel_time t);
 int sum_arr(int arr[], int n);
@@ -46,6 +59,8 @@ double average(double, double);
 
 unsigned int c_in_str(const char *str, char ch);
 char *buildstr(char ch, int n);
+
+
 int main()
 {
     //Listing 7.5
@@ -99,6 +114,48 @@ int main()
     };
     cout << "Done!\n";*/
 
+    //Listing 7.14
+    //обработка массива объектов string
+    /*string list[SIZE];
+    cout << "Enter your astronomical sights: \n";
+    for (int i = 0; i < SIZE; i++)
+    {
+        cout << i+1 << ": ";
+        getline(cin, list[i]);
+    }
+
+    cout << "Your list:\n";
+    display(list, SIZE);*/
+
+    //Listing 7.15
+    //функции с объектами array
+    /*array<double, Seasons> expenses;
+    fill(&expenses);
+    show(expenses);*/
+
+    //Listing 7.16
+    //использование рекурсии
+    //countdown(4);
+
+    //Listing 7.17
+    //использование рекурсии дл€ разделени€ линейки
+    char ruler[Len];
+    int i;
+    for (i = 1; i < Len - 2; i++)
+        ruler[i] = ' ';
+    ruler[Len - 1] = '\0';
+    int max = Len-2;
+    int min = 0;
+    ruler[min] = ruler[max] = '|';
+    cout << ruler <<endl;
+    for (i = 1; i <= Divs; i++)
+    {
+        subdivide(ruler, min, max, i);
+        cout << ruler << endl;
+        for (int j = 1; j < Len-2; j++)
+            ruler[j] = ' ';
+    }
+
 
     //”пражнение 1
     /*double x, y;
@@ -117,13 +174,58 @@ int main()
 
     cout << "Done!" << endl;*/
 
-    //”пражнение 2
-    box b = {"box", 101.2, 45.8, 5.3, 456.8};
+    //”пражнение 3
+    /*box b = {"box", 101.2, 45.8, 5.3, 456.8};
     show_box(b);
     box_volume(&b);
-    show_box(b);
+    show_box(b);*/
 
     return 0;
+}
+
+void subdivide(char ar[], int low, int high, int level)
+{
+    if (level == 0)
+        return;
+    int mid = (high + low) / 2;
+    ar[mid] = '|';
+    subdivide(ar, low, mid, level-1);
+    subdivide(ar, mid, high, level-1);
+}
+
+void countdown(int n)
+{
+    cout << "Counting down ... " << n << " at " << &n << endl;
+    if (n > 0)
+        countdown(n-1);
+    cout << n << " at " << &n << ": kaboom!\n" ;
+}
+
+void fill(std::array<double, Seasons> *pa)
+{
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << "Enter "<< Snames[i] << " expenses: ";
+        cin >> (*pa)[i];
+    }
+}
+
+void show(std::array<double, Seasons> da)
+{
+    double total = 0.0;
+    cout << "\nEXPENSES\n";
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << Snames[i] << ": $" << da[i] << endl;
+        total += da[i];
+    }
+    cout << "Total expemses: $" << total << endl;
+}
+
+void display(const string sa[], int n)
+{
+    for (int i = 0; i < n; i++)
+        cout << i+1 << ": " << sa[i] << endl;
 }
 
 void show_box(box b)
