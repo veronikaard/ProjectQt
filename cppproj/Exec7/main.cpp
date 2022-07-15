@@ -60,6 +60,13 @@ double average(double, double);
 unsigned int c_in_str(const char *str, char ch);
 char *buildstr(char ch, int n);
 
+double betsy(int);
+double pam(int);
+void estimate(int lines, double (*pf)(int));
+
+const double *f1(const double ar[], int n);
+const double *f2(const double [], int);
+const double *f3(const double *, int);
 
 int main()
 {
@@ -139,7 +146,7 @@ int main()
 
     //Listing 7.17
     //использование рекурсии дл€ разделени€ линейки
-    char ruler[Len];
+    /*char ruler[Len];
     int i;
     for (i = 1; i < Len - 2; i++)
         ruler[i] = ' ';
@@ -154,8 +161,48 @@ int main()
         cout << ruler << endl;
         for (int j = 1; j < Len-2; j++)
             ruler[j] = ' ';
-    }
+    }*/
 
+    //Listing 7.18
+    //указатели на функции
+    /*int code;
+    cout << "Enter lines: ";
+    cin >> code;
+    cout << "Betsy's estimate: ";
+    estimate(code, betsy);
+    cout << "\nPam's estimate: ";
+    estimate(code, pam);
+    cout << endl;*/
+
+    //Listing 7.19
+    //массив указателей на функции
+    double av[3] = {1112.3, 1542.6, 2227.9};
+
+    //указатель на функцию
+    const double *(*p1)(const double *, int) = f1;
+    auto p2 = f2;
+
+    cout << "Address value\n";
+    cout << (*p1)(av, 3) << ": " << *(*p1)(av, 3) << endl;
+    cout << p2(av, 3) << ": " << *p2(av, 3) << endl;
+
+    const double *(*pa[3])(const double *, int) =
+    {f1, f2, f3};
+
+    auto pb = pa; //pb - указатель на первый эл-т pa
+    for (int i = 0;  i < 3; i++)
+        cout << pa[i](av, 3) << ": " << *pa[i](av, 3) << endl;
+
+    for (int i = 0; i < 3; i++)
+        cout << pb[i](av, 3) << ": " << *pb[i](av, 3) << endl;
+
+    //”казатель на массив указателей на ф-и
+    auto pc = &pa;
+    cout << (*pc)[0](av, 3) << ": " << *(*pc)[0](av, 3) << endl;
+    const double *(*(*pd)[3])(const double *, int) = &pa;
+    const double *pdb = (*pd)[1](av, 3);
+    cout << pdb << ": " << *pdb << endl;
+    cout << (*(*pd)[2])(av, 3) << ": " << *(*(*pd)[2])(av, 3) << endl;
 
     //”пражнение 1
     /*double x, y;
@@ -181,6 +228,36 @@ int main()
     show_box(b);*/
 
     return 0;
+}
+
+const double *f1(const double ar[], int n)
+{
+    return ar;
+}
+
+const double *f2(const double ar[], int n)
+{
+    return ar + 1;
+}
+
+const double *f3(const double *ar, int n)
+{
+    return ar + 2;
+}
+
+double betsy(int lns)
+{
+    return 0.05 * lns;
+}
+
+double pam(int lns)
+{
+    return 0.03 * lns + 0.0004 * lns * lns;
+}
+
+void estimate(int lines, double (*pf)(int))
+{
+    cout << lines << " " << (*pf)(lines);
 }
 
 void subdivide(char ar[], int low, int high, int level)
