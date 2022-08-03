@@ -2,6 +2,7 @@
 #include <cmath>
 #include <array>
 #include <string>
+#include <locale>
 
 using namespace std;
 
@@ -68,8 +69,17 @@ const double *f1(const double ar[], int n);
 const double *f2(const double [], int);
 const double *f3(const double *, int);
 
+int setArray(int ar[], int size);
+double aver(const int ar[], int size);
+void showArray(const int ar[], int size);
+
+long double probability(unsigned numbers, unsigned picks);
+
+long int factorial(int n);
+
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     //Listing 7.5
     /*int cookies[ArSize] = {1, 2, 4, 8, 16, 32, 64, 128};
     cout << cookies << endl;
@@ -179,7 +189,7 @@ int main()
     double av[3] = {1112.3, 1542.6, 2227.9};
 
     //указатель на функцию
-    const double *(*p1)(const double *, int) = f1;
+    /*const double *(*p1)(const double *, int) = f1;
     auto p2 = f2;
 
     cout << "Address value\n";
@@ -202,7 +212,7 @@ int main()
     const double *(*(*pd)[3])(const double *, int) = &pa;
     const double *pdb = (*pd)[1](av, 3);
     cout << pdb << ": " << *pdb << endl;
-    cout << (*(*pd)[2])(av, 3) << ": " << *(*(*pd)[2])(av, 3) << endl;
+    cout << (*(*pd)[2])(av, 3) << ": " << *(*(*pd)[2])(av, 3) << endl;*/
 
     //Упражнение 1
     /*double x, y;
@@ -221,13 +231,100 @@ int main()
 
     cout << "Done!" << endl;*/
 
+    //Упражнение 2
+    /*cout << "Введите до 10 результатов игры в гольф, для прекращения ввода "
+            "нажмите q\n";
+    const int size = 10;
+    int golf[size];
+    int nSz = setArray(golf, size);
+    cout << nSz << endl;
+    showArray(golf, nSz);
+    cout << aver(golf, nSz) << endl;*/
+
     //Упражнение 3
     /*box b = {"box", 101.2, 45.8, 5.3, 456.8};
     show_box(b);
     box_volume(&b);
     show_box(b);*/
 
+    //Упражнение 4
+    /*double total, choices, tot_shans = 1.0;
+    cout << "Введите общее количество номеров и количество номеров, которые нужно угадать\n";
+    while ((cin >> total >> choices) && choices <= total) {
+        tot_shans = tot_shans * probability(total, choices);
+        //cout << probability(total, choices) << endl;
+        cout << "\nМеганомер ()q для завершения: ";
+    };
+
+    cout << "Вероятность выигрыша: " << tot_shans << endl;*/
+
+    //Упражнение 5
+    int num;
+    cout << "Введите число: ";
+    cin >> num;
+    cout << num << "! = " << factorial(num) << endl;
+
     return 0;
+}
+
+
+long int factorial(int n)
+{
+    if (n > 1)
+        return n * factorial(n-1);
+}
+
+long double probability(unsigned numbers, unsigned picks)
+{
+    long double result = 1.0;
+    long double n;
+    unsigned p;
+    for (n = numbers, p = picks; p > 0; n--, p--)
+        result *= n/p;
+    return result;
+}
+
+int setArray(int ar[], int size)
+{
+    using namespace std;
+    int temp;
+    int i;
+
+    cout << "Для прекращения ввода введите отрицательное значение\n";
+
+    for (i = 0; i < size; i++)
+    {        
+        cout << "#" << (i+1) << ": ";
+
+        cin >> temp;
+
+        if (!cin)
+        {
+            cin.clear();
+            while(cin.get() != '\n')
+                continue;
+            break;
+        }
+        else if(temp < 0)
+            break;
+        ar[i] = temp;
+    }
+    return i;
+}
+
+double aver(const int ar[], int size)
+{
+    double total = 0.0;
+    for (int i = 0; i < size; i++)
+        total += ar[i] ;
+    return total/size;
+}
+
+void showArray(const int ar[], int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << ar[i] << " ";
+    cout << endl;
 }
 
 const double *f1(const double ar[], int n)
