@@ -65,6 +65,9 @@ double betsy(int);
 double pam(int);
 void estimate(int lines, double (*pf)(int));
 
+void fill_a(char* seson[], int size);
+void show_a(const char* seson, int size);
+
 const double *f1(const double ar[], int n);
 const double *f2(const double [], int);
 const double *f3(const double *, int);
@@ -154,9 +157,9 @@ int main()
 
     //Listing 7.15
     //функции с объектами array
-    array<double, Seasons> expenses;
+    /*array<double, Seasons> expenses;
     fill(&expenses);
-    show(expenses);
+    show(expenses);*/
 
     //Listing 7.16
     //использование рекурсии
@@ -308,9 +311,33 @@ int main()
     cin.get();*/
 
     //”пражнение 8
+    //array<double, Seasons> expenses;
+    //fill(&expenses);
+    //show(expenses);
+    const int size = 4;
+    double price[size];
+    char* Seasons[size];
+    fill_a(Seasons, size);;
 
 
     return 0;
+}
+
+void fill_a(char* seson[], int size)
+{
+    char * temp;
+    cout << "¬ведите названи€ сезонов: " << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cout << "#" << i << " ";
+        cin >> temp;
+        seson[i] = temp;
+    }
+}
+
+void show_a(const char* seson, int size)
+{
+
 }
 
 double *fill_array(double *begin, double *end)
