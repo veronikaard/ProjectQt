@@ -77,6 +77,14 @@ long double probability(unsigned numbers, unsigned picks);
 
 long int factorial(int n);
 
+int Fill_array(double ar[], int size);
+void Show_array(const double ar[], int size);
+void Reverse_array(double *ar, int size);
+
+double *fill_array(double *begin, double *end);
+void show_array(const double *begin, const double *end);
+void revalue(double r, double *begin, double *end);
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -146,9 +154,9 @@ int main()
 
     //Listing 7.15
     //функции с объектами array
-    /*array<double, Seasons> expenses;
+    array<double, Seasons> expenses;
     fill(&expenses);
-    show(expenses);*/
+    show(expenses);
 
     //Listing 7.16
     //использование рекурсии
@@ -186,7 +194,7 @@ int main()
 
     //Listing 7.19
     //массив указателей на функции
-    double av[3] = {1112.3, 1542.6, 2227.9};
+    //double av[3] = {1112.3, 1542.6, 2227.9};
 
     //указатель на функцию
     /*const double *(*p1)(const double *, int) = f1;
@@ -259,14 +267,128 @@ int main()
     cout << "Вероятность выигрыша: " << tot_shans << endl;*/
 
     //Упражнение 5
-    int num;
+    /*int num;
     cout << "Введите число: ";
     cin >> num;
-    cout << num << "! = " << factorial(num) << endl;
+    cout << num << "! = " << factorial(num) << endl;*/
+
+    //Упражнение 6
+    /*const int size = 5;
+    double ar[size];
+
+    int Sz = Fill_array(ar, size);
+    //cout << Sz;
+    Show_array(ar, Sz);
+    Reverse_array(ar, Sz);
+    cout << endl;
+    Show_array(ar, Sz);*/
+
+    //Упражнение 7
+    /*const int Max = 5;
+    double properties[Max] = {1, 2, 3, 4, 5};
+    double *end;
+    end = fill_array(properties, properties + Max);
+    show_array(properties, end) ;
+    if ( properties  <  end )
+    {
+        cout  <<  " Enter  revaluation  factor :" ;
+        double  factor;
+        while  (!(cin >> factor ))
+        {
+            cin.clear();
+            while (cin.get() != '\n')
+                continue;
+            cout  <<  "Bad input; Please enter а numЬer : ";  // повторный  запрос  на  ввод числа
+        }
+        revalue (factor, properties,  end) ;
+        show_array (properties, end) ;
+    }
+
+    cin.get();
+    cin.get();*/
+
+    //Упражнение 8
+
 
     return 0;
 }
 
+double *fill_array(double *begin, double *end)
+{
+    double *k;
+    int i = 0;
+    for (k = begin; k < end; k++)
+    {
+        cout << "#" << ++i << " = ";
+        cin >> *k;
+        if (!cin)
+        {
+            cin.clear();
+            while (cin.get() != '\n')
+                continue;
+            cout << "Bad input\n";
+            break;
+        }
+        else if (*k < 0)
+            break;
+    }
+
+    return k;
+}
+
+void show_array(const double *begin, const double *end)
+{
+    while (begin < end) {
+        cout << *begin << " ";
+        begin++;
+    }
+}
+
+void revalue(double r, double *begin, double *end)
+{
+    while (begin < end) {
+        *begin *= r;
+        begin++;
+    }
+}
+
+int Fill_array(double ar[], int size)
+{
+    int i;
+    cout << "Введите элементы массива:\n";
+    for (i = 0; i < size; i++)
+    {
+        cout << "ar[" << i << "] = ";
+        cin >> ar[i];
+
+        if (!cin)
+        {
+            cin.clear();
+            while (cin.get() != '\n')
+                continue;
+            return i;
+        }
+    }
+
+    return i;
+}
+
+void Show_array(const double ar[], int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << ar[i] << " ";
+}
+
+void Reverse_array(double *ar, int size)
+{
+    double temp;
+    for (int i = 0, j = size-1; i < size/2; i++, j--)
+    {
+        temp = ar[i];
+        ar[i] = ar[j];
+        ar[j] = temp;
+    }
+}
 
 long int factorial(int n)
 {
