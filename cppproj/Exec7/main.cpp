@@ -48,6 +48,8 @@ const int Divs = 6;
 const std::array< std::string, Seasons> Snames =
 {"Spring", "Summer", "Fall", "Winter"};
 
+const char* Seas[Seasons] = {"Spring", "Summer", "Fall", "Winter"};
+
 void subdivide(char ar[], int low, int high, int level);
 void fill(std::array<double, Seasons> *pa);
 void show(std::array<double, Seasons> da);
@@ -87,6 +89,19 @@ void Reverse_array(double *ar, int size);
 double *fill_array(double *begin, double *end);
 void show_array(const double *begin, const double *end);
 void revalue(double r, double *begin, double *end);
+
+const int SLEN = 30;
+struct student
+{
+    char fullname[SLEN];
+    char hobby[SLEN];
+    int ooplevel;
+};
+
+int getinfo(student pa[], int n);
+void display1(student st);
+void display2(const student *ps);
+void display3(const student pa[], int n);
 
 int main()
 {
@@ -314,13 +329,69 @@ int main()
     //array<double, Seasons> expenses;
     //fill(&expenses);
     //show(expenses);
-    const int size = 4;
+    /*const int size = 4;
     double price[size];
-    char* Seasons[size];
-    fill_a(Seasons, size);;
+    //char* Seasons[size];
+    fill_a(Seasons, size);*/
+
+    //”пражнение 9
+    /*cout << "Enter class size: ";
+    int class_size;
+    cin >> class_size;
+    while (cin.get() != '\n')
+        continue;
+    student *ptr_stu = new student[class_size];
+    int entered = getinfo(ptr_stu, class_size);
+    for (int i = 0; i < entered; i++)
+    {
+        //display1(ptr_stu[i]);
+        //display2(&ptr_stu[i]);
+    }
+    display3(ptr_stu, entered);
+    delete [] ptr_stu;*/
+
+    //”пражнение 10
 
 
     return 0;
+}
+
+void display3(const student pa[], int n)
+{
+    for (int i = 0; i < n; i ++)
+        cout << pa[i].fullname << " " << pa[i].hobby << " "
+             << pa[i].ooplevel << endl;
+}
+
+void display2(const student *ps)
+{
+    cout <<  ps->fullname << " " << ps->hobby << " "
+         << ps->ooplevel << endl;
+}
+
+void display1(student st)
+{
+    cout << st.fullname << " " << st.hobby << " "
+         << st.ooplevel << endl;
+}
+
+int getinfo(student pa[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter fullname for " << i << " student: " ;
+        cin.clear();
+        cin.get();
+        cin.getline(pa[i].fullname, 20) ;
+        if (pa[i].fullname[0] == '\0')
+            return i;
+        cout << "enter hobby: ";
+        cin >> pa[i].hobby;
+        cout << "enter ooplevel: ";
+        cin >> pa[i].ooplevel;
+    }
+
+    return n;
 }
 
 void fill_a(char* seson[], int size)
