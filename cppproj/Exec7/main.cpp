@@ -90,6 +90,11 @@ double *fill_array(double *begin, double *end);
 void show_array(const double *begin, const double *end);
 void revalue(double r, double *begin, double *end);
 
+inline double calculate(double & x, double & y, double (*fx)(double & x, double & y)){return fx(x, y);}
+inline double add(double & x, double & y){return x + y;}
+inline double mult(double & x, double & y){return x-y;}
+inline double sub(double & x, double & y){return x*y;}
+
 const int SLEN = 30;
 struct student
 {
@@ -352,6 +357,18 @@ int main()
 
     //”пражнение 10
 
+    //double q = calculate(5.0, 10.0, pf[2]);
+    //cout << q;
+    double x, y;
+    double (*pf[3])(double &, double &) = {add, mult, sub};
+
+    cout << "¬ведите пару чисел x и y (q дл€ завершени€): ";
+    while (cin >> x && cin >> y) {
+        cout << "Add = " << calculate(x, y, pf[0]) << endl;
+        cout << "Mult = "<< calculate(x, y, pf[1]) << endl;
+        cout << "Sub = " << calculate(x, y, pf[2]) << endl;
+        cout << "¬ведите следующую пару чисел x и y (q дл€ завершени€): ";
+    }
 
     return 0;
 }
