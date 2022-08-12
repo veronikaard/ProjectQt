@@ -359,7 +359,7 @@ int main()
 
     //double q = calculate(5.0, 10.0, pf[2]);
     //cout << q;
-    double x, y;
+    /*double x, y;
     double (*pf[3])(double &, double &) = {add, mult, sub};
 
     cout << "¬ведите пару чисел x и y (q дл€ завершени€): ";
@@ -368,7 +368,7 @@ int main()
         cout << "Mult = "<< calculate(x, y, pf[1]) << endl;
         cout << "Sub = " << calculate(x, y, pf[2]) << endl;
         cout << "¬ведите следующую пару чисел x и y (q дл€ завершени€): ";
-    }
+    }*/
 
     return 0;
 }
