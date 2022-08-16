@@ -1,0 +1,7 @@
+Focus distance objective 1800 mm
+f. l. eyepiece  magnification
+        12.0            150
+        45.0             40
+        54.0             33
+        45.0             40
+        54.0             33
