@@ -29,8 +29,12 @@ void file_it(ostream &os, double fo, const double fe[], int n);
 const int LIMIT = 5;
 
 const int ArSize = 80;
+<<<<<<< HEAD
 char *left(const char *str, int n = 1);
 unsigned long left(unsigned long num, unsigned ct);
+=======
+char * left(const char * str, int n = 1);
+>>>>>>> 923ab32ef0e0811811211a8f80b41f222d1a043e
 
 int main()
 {
@@ -132,6 +136,7 @@ int main()
     file_it(cout, objective, eps, LIMIT);*/
 
     //Listing 8.9
+<<<<<<< HEAD
     /*char sample[ArSize];
     cout << "Enter a string:\n";
     cin.get(sample, ArSize);
@@ -154,6 +159,18 @@ int main()
         cout << temp << endl;
         delete [] temp;
     }*/
+=======
+    //строковая ф-я с аргументом по умолчанию
+    char sample[ArSize];
+    cout << "Enter a string: ";
+    cin.get(sample, ArSize);
+    char *ps = left(sample, 4);
+    cout << ps << endl;
+    delete [] ps;
+    ps = left(sample);
+    cout << ps << endl;
+    delete [] ps;
+>>>>>>> 923ab32ef0e0811811211a8f80b41f222d1a043e
 
     return 0;
 }
@@ -189,6 +206,19 @@ unsigned long left(unsigned long num, unsigned ct)
     }
     else
         return num;
+}
+
+char *left(const char *str, int n)
+{
+    if (n < 0)
+        n=0;
+    char *p = new char[n+1];
+    int i;
+    for (i = 0; i < n && str[i]; i++)
+        p[i] = str[i];
+    while (i <= n)
+        p[i++] = '\0';
+    return p;
 }
 
 void file_it(ostream &os, double fo, const double fe[], int n)
