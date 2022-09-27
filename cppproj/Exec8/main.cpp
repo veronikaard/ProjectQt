@@ -4,8 +4,8 @@
 #include <cstdlib>
 
 using namespace std;
-
-void swapr(int & a, int &b);
+template <typename T>
+void swapr(T & a, T &b);
 void swapp(int *p, int *q);
 void swapv(int a, int b);
 
@@ -28,13 +28,16 @@ const string & version3(string & s1, const string & s2);
 void file_it(ostream &os, double fo, const double fe[], int n);
 const int LIMIT = 5;
 
+const int ArSize = 80;
+char *left(const char *str, int n = 1);
+unsigned long left(unsigned long num, unsigned ct);
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
-
     //Listing 8.4
     //обмен значениями с помощью ссылок и указателей
-    /*int wallet1 = 300;
+    int wallet1 = 300;
     int wallet2 = 250;
     cout << "wallet1 = $" << wallet1;
     cout << " wallet2 = $" << wallet2 << endl;
@@ -52,7 +55,7 @@ int main()
     cout << "Value:\n";
     swapv(wallet1, wallet2);
     cout << "wallet1 = $" << wallet1;
-    cout << " wallet2 = $" << wallet2 << endl;*/
+    cout << " wallet2 = $" << wallet2 << endl;
 
     //Listing 8.6
     //использование ссылок на структуру
@@ -105,7 +108,7 @@ int main()
 
     //Listing 8.8
     //функция с параметром ofstream &
-    ofstream fout;
+    /*ofstream fout;
     const char * fn = "ep-data.txt";
     fout.open(fn);
     if (!fout.is_open())
@@ -126,10 +129,66 @@ int main()
     }
 
     file_it(fout, objective, eps, LIMIT);
-    file_it(cout, objective, eps, LIMIT);
+    file_it(cout, objective, eps, LIMIT);*/
 
+    //Listing 8.9
+    /*char sample[ArSize];
+    cout << "Enter a string:\n";
+    cin.get(sample, ArSize);
+    char *ps = left(sample, 4);
+    cout << ps << endl;
+    delete [] ps;       //освободить старую строку
+    ps = left(sample);
+    cout << ps << endl;
+    delete [] ps;       //освободить новую строку*/
+
+    //Listing 8.10
+    /*char *trip = "Hawaii!!";
+    unsigned long n = 12345678;
+    int i;
+    char *temp;
+    for (i = 1; i < 10; i ++)
+    {
+        cout << left(n, i) << endl;
+        temp = left(trip, i);
+        cout << temp << endl;
+        delete [] temp;
+    }*/
 
     return 0;
+}
+/*Эта функция возвращает указатель на новую строку,
+состоящую из первых n символов строки str*/
+char *left(const char *str, int n)
+{
+    if (n < 0)
+        n = 0;
+    char *p = new char[n+1];
+    int i;
+    for (i = 0; i < n && str[i]; i++)
+        p[i] = str[i];
+    while (i <= n)
+        p[i++] = '\0';
+    return p;
+}
+
+unsigned long left(unsigned long num, unsigned ct)
+{
+    unsigned digits = 1;
+    unsigned long n = num;
+    if (ct == 0 || num == 0)
+        return 0;
+    while (n /= 10)
+        digits++;
+    if (digits > ct)
+    {
+        ct = digits - ct;
+        while (ct--)
+            num /= 10;
+        return num;
+    }
+    else
+        return num;
 }
 
 void file_it(ostream &os, double fo, const double fe[], int n)
@@ -199,9 +258,10 @@ void display(const free_throws &ft)
     cout << "Percent: " << ft.percent << '\n';
 }
 
-void swapr(int &a, int &b)
+template <typename T>
+void swapr(T &a, T &b)
 {
-    int temp;
+    T temp;
     temp = a;
     a = b;
     b = temp;
