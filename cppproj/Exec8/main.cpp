@@ -9,6 +9,17 @@ void swapr(T & a, T &b);
 void swapp(int *p, int *q);
 void swapv(int a, int b);
 
+template <typename T>   //шаблон
+void Swap(T &a, T &b);
+struct job
+{
+    char name[40];
+    double salary;
+    int floor;
+};
+template <> void Swap<job>(job &j1, job &j2); //€вна€ специализаци€
+void Show(job &j);
+
 struct free_throws
 {
     string name;
@@ -38,7 +49,7 @@ int main()
     setlocale(LC_ALL, "Russian");
     //Listing 8.4
     //обмен значени€ми с помощью ссылок и указателей
-    int wallet1 = 300;
+    /*int wallet1 = 300;
     int wallet2 = 250;
     cout << "wallet1 = $" << wallet1;
     cout << " wallet2 = $" << wallet2 << endl;
@@ -56,7 +67,7 @@ int main()
     cout << "Value:\n";
     swapv(wallet1, wallet2);
     cout << "wallet1 = $" << wallet1;
-    cout << " wallet2 = $" << wallet2 << endl;
+    cout << " wallet2 = $" << wallet2 << endl;*/
 
     //Listing 8.6
     //использование ссылок на структуру
@@ -156,7 +167,7 @@ int main()
         delete [] temp;
     }*/
     //строкова€ ф-€ с аргументом по умолчанию
-    char sample[ArSize];
+    /*char sample[ArSize];
     cout << "Enter a string: ";
     cin.get(sample, ArSize);
     char *ps = left(sample, 4);
@@ -164,7 +175,27 @@ int main()
     delete [] ps;
     ps = left(sample);
     cout << ps << endl;
-    delete [] ps;
+    delete [] ps;*/
+
+    //Listing 8.13
+    //—пециализаци€ переопредел€ет шаблон
+    cout.precision(2);
+    cout.setf(ios::fixed, ios::floatfield);
+    int i = 10, j = 20;
+    cout << "i, j = " << i << ", " << j << ".\n";
+    cout << "Using compiler-generated int swapper:\n";
+    Swap(i, j);
+    cout << "Now i, j = " << i << ", " << j << ".\n";
+
+    job Sue = {"Suesan", 73000.60, 7};
+    job Sidney = {"Sidney", 78020.60, 9};
+    cout << "Before job swapping:\n";
+    Show(Sue);
+    Show(Sidney);
+    Swap(Sue, Sidney);
+    cout << "After job swapping:\n";
+    Show(Sue);
+    Show(Sidney);
 
     return 0;
 }
@@ -280,6 +311,33 @@ void display(const free_throws &ft)
     cout << "Made: " << ft.made << '\t';
     cout << "Attempts: " << ft.attempts << '\t';
     cout << "Percent: " << ft.percent << '\n';
+}
+
+template <typename T>
+void Swap(T &a, T &b)       //ќбобщенна€ верси€
+{
+    T temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+template <> void Swap<job>(job &j1, job &j2)       //—пециализаци€
+{
+    double t1;
+    int t2;
+    t1 = j1.salary;
+    j1.salary = j2.salary;
+    j2.salary = t1;
+    t2 = j1.floor;
+    j1.floor = j2.floor;
+    j2.floor = t2;
+}
+
+void Show(job &j)
+{
+    cout << j.name << ": $" << j.salary
+         << " on floor " << j.floor << endl;
 }
 
 template <typename T>
