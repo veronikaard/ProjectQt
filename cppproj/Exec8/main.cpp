@@ -44,6 +44,32 @@ char *left(const char *str, int n = 1);
 unsigned long left(unsigned long num, unsigned ct);
 //char *left(const char *str, int n = 1);
 
+template <typename T>   //A
+void ShowArray(T arr[], int n);
+
+template <typename T>   //B
+void ShowArray(T *arr[], int n);
+
+struct debts
+{
+    char name[50];
+    double amount;
+};
+
+template <class T>
+T lesser(T a, T b)
+{
+    return a < b ? a:b;
+}
+
+int lesser (int a, int b)
+{
+    a = a < 0 ? -a:a;
+    b = b < 0 ? -b:b;
+    return a < b ? a:b;
+}
+
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -179,7 +205,7 @@ int main()
 
     //Listing 8.13
     //Специализация переопределяет шаблон
-    cout.precision(2);
+    /*cout.precision(2);
     cout.setf(ios::fixed, ios::floatfield);
     int i = 10, j = 20;
     cout << "i, j = " << i << ", " << j << ".\n";
@@ -195,10 +221,60 @@ int main()
     Swap(Sue, Sidney);
     cout << "After job swapping:\n";
     Show(Sue);
-    Show(Sidney);
+    Show(Sidney);*/
+
+    //Listing 8.14
+    //Перегрузка шаблонов
+    /*int things[6] = {13, 31, 103, 301, 310, 130};
+    struct debts mr_E[3] =
+    {
+        {"Ima Wolfe", 2400.0},
+        {"Ura Foxe", 1300.0},
+        {"Iby Stout", 1800.0}
+    };
+
+    double *pd[3];
+
+    for (int i = 0; i < 3; i++)
+        pd[i] = &mr_E[i].amount;
+    cout << "Listing counts of things:\n";
+    ShowArray(things, 6);
+
+    ShowArray(pd, 3);*/
+
+    //Listing 8.15
+    //Выбор шаблона
+    int m = 20;
+    int n = -30;
+    double x = 15.5;
+    double y = 25.9;
+
+    cout << lesser(m,n) << endl;        //2
+    cout << lesser(x,y) << endl;        //1
+    cout << lesser <> (m,n) << endl;    //1
+    cout << lesser <int> (x,y) << endl; //2
 
     return 0;
 }
+
+template <typename T>
+void ShowArray(T arr[], int n)
+{
+    cout << "Template A\n";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << ' ';
+    cout << endl;
+}
+
+template <typename T>
+void ShowArray(T * arr[], int n)
+{
+    cout << "Template B\n";
+    for (int i = 0; i < n; i++)
+        cout << *arr[i] << ' ';
+    cout << endl;
+}
+
 /*Эта функция возвращает указатель на новую строку,
 состоящую из первых n символов строки str*/
 /*char *left(const char *str, int n)
