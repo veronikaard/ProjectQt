@@ -251,8 +251,8 @@ int main()
 
     cout << lesser(m,n) << endl;        //2
     cout << lesser(x,y) << endl;        //1
-    cout << lesser <> (m,n) << endl;    //1
-    cout << lesser <int> (x,y) << endl; //2
+    cout << lesser <> (m,n) << endl;    // <> указывает использовать шаблон
+    cout << lesser <int> (x,y) << endl; // //-// и преобразует double -> int
 
     return 0;
 }
