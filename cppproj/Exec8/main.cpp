@@ -69,6 +69,7 @@ int lesser (int a, int b)
     return a < b ? a:b;
 }
 
+void showStr(const char *str, int n = 0);
 
 int main()
 {
@@ -244,7 +245,7 @@ int main()
 
     //Listing 8.15
     //Выбор шаблона
-    int m = 20;
+    /*int m = 20;
     int n = -30;
     double x = 15.5;
     double y = 25.9;
@@ -252,9 +253,34 @@ int main()
     cout << lesser(m,n) << endl;        //2
     cout << lesser(x,y) << endl;        //1
     cout << lesser <> (m,n) << endl;    // <> указывает использовать шаблон
-    cout << lesser <int> (x,y) << endl; // //-// и преобразует double -> int
+    cout << lesser <int> (x,y) << endl;*/ // //-// и преобразует double -> int
+
+
+    //Упражнение 1
+    showStr("Hi");
+    showStr("Ghg");
+    showStr("Wy?", 5);
+
+    //Упражнение 2
+    //Упражнение 3
+    //Упражнение 4
+    //Упражнение 5
+    //Упражнение 6
+    //Упражнение 7
+
+
 
     return 0;
+}
+
+void showStr(const char *str, int n)
+{
+    static int sum = 0;
+    if (n != 0)
+        for (int i = 0; i < sum; i ++)
+            cout << str << endl;
+    else cout << str << endl;
+    sum++;
 }
 
 template <typename T>
