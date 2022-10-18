@@ -1,7 +1,12 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <fstream>
 #include <cstdlib>
+#include <cmath>
+#include <cctype>
+
+
 
 using namespace std;
 template <typename T>
@@ -44,11 +49,7 @@ char *left(const char *str, int n = 1);
 unsigned long left(unsigned long num, unsigned ct);
 //char *left(const char *str, int n = 1);
 
-template <typename T>   //A
-void ShowArray(T arr[], int n);
 
-template <typename T>   //B
-void ShowArray(T *arr[], int n);
 
 struct debts
 {
@@ -69,7 +70,43 @@ int lesser (int a, int b)
     return a < b ? a:b;
 }
 
+struct CandyBar
+{
+    string name;
+    double weight;
+    int ccal;
+};
+
+struct stringy {
+    char * str;     //указывает на строку
+    int ct;         //длина строки
+};
+
+void set(stringy &stg, char *str);
+void show(const stringy &str, int times = 1);
+void show(const char *str, int times = 1);
+
+void setStructCandy(CandyBar &candy, string nm = "Millenium Munch",
+          const double w = 2.85, const int ccl = 350);
+void showStructCandy(const CandyBar &candy);
+
+void stringToUpper(string & str);
+
 void showStr(const char *str, int n = 0);
+
+template <typename T>
+T max5(const T *arr);
+
+template <typename T>
+T maxn(T *arr, int n);
+
+template <> char* maxn <char* > (char** str, int n);       //€вна€ специализаци€
+
+template <typename T>   //A
+T SumArray(T arr[], int n);
+
+template <typename T>   //B
+T SumArray(T *arr[], int n);
 
 int main()
 {
@@ -257,20 +294,177 @@ int main()
 
 
     //”пражнение 1
-    showStr("Hi");
-    showStr("Ghg");
-    showStr("Wy?", 5);
+    //showStr("Hi");
+    //showStr("Ghg");
+    //showStr("Wy?", 5);
 
     //”пражнение 2
-    //”пражнение 3
-    //”пражнение 4
-    //”пражнение 5
-    //”пражнение 6
-    //”пражнение 7
+    //CandyBar candy;
+    //setStructCandy(candy);
+    //showStructCandy(candy);
 
+    //”пражнение 3
+    //string str = "hi";
+    //stringToUpper(str);
+
+    //”пражнение 4
+    //stringy beany;
+    //char testing[] = "Reality isn't what it used too be.";
+    //set(beany, testing);
+    //show(beany);
+    //show(beany, 2);
+    //testing[0] = 'D';
+    //testing[1] = 'u';
+    //show(testing);
+    //show(testing, 2);
+
+    //”пражнение 5
+    /*int arr_int[5] = {500, 10, 15, 45, 20};
+    double arr_doub[5] = {5.5, 10.0, 15.3, 45.56, 20.895};
+
+    cout << max5(arr_int) << "\n";
+    cout << max5(arr_doub);*/
+
+    //”пражнение 6
+    /*int arr_int[6] = {500, 10, 15, 45, 20, 1024};
+    double arr_doub[4] = {500.5, 100.0, 15.3, 45.56};
+
+    char *arr_char[3] = {
+        "hello",
+        "my",
+        "babyb",
+    };
+
+    cout << maxn(arr_int, 6) << "\n";
+    cout << maxn(arr_doub, 5) << "\n";
+    cout << maxn(arr_char, 3);*/
+
+    //”пражнение 7
+    int things[6] = {13, 31, 103, 301, 310, 130};
+    struct debts mr_E[3] =
+    {
+        {"Ima Wolfe", 2400.0},
+        {"Ura Foxe", 1300.0},
+        {"Iby Stout", 1800.0}
+    };
+
+    double *pd[3];
+
+    for (int i = 0; i < 3; i++)
+        pd[i] = &mr_E[i].amount;
+    cout << "Listing counts of things:\n";
+    cout << SumArray(things, 6) << endl;
+
+    cout << SumArray(pd, 3);
 
 
     return 0;
+}
+
+template <typename T>
+T SumArray(T arr[], int n)
+{
+    T sum = 0;
+    cout << "Template A\n";
+    for (int i = 0; i < n; i++)
+        sum += arr[i];
+
+    return sum;
+}
+
+template <typename T>
+T SumArray(T * arr[], int n)
+{
+    T sum = 0;
+    cout << "Template B\n";
+    for (int i = 0; i < n; i++)
+        sum += *arr[i];
+    return sum;
+}
+
+template <> char* maxn <char* > (char** str, int n)
+{
+    //cout << str[0];
+    char * temp = str[0];
+    int len = strlen(str[0]);
+    for (int i = 1; i < n; i++)
+        if (strlen(str[i]) > len)
+            temp = str[i];
+    return temp;
+}
+
+template <typename T>
+T maxn(T *arr, int n)
+{
+    T max = arr[0];
+    if (n > 0)
+    {
+        for (int i = 1; i < n; i++)
+            if (arr[i] > max)
+                max = arr[i];
+        return max;
+    }
+    else
+    {
+        cout << "Error two argument\n";
+        max = -1;
+        return max;
+    }
+}
+
+template <typename T>
+T max5(const T *arr)
+{
+    T max = arr[0];
+    for (int i = 1; i < 5; i++)
+        if (arr[i] > max)
+            max = arr[i];
+    return max;
+}
+
+void show(const stringy &str, int times)
+{
+    if (times > 0)
+        for (int i = 0; i < times; i++)
+            cout << str.str << " " << str.ct << "\n";
+    else
+        return;
+}
+
+void show(const char *str, int times)
+{
+    if (times > 0)
+        for (int i = 0; i < times; i++)
+            cout << str << "\n";
+    else
+        return;
+}
+
+void set(stringy &stg, char *str)
+{
+    stg.str = str;
+    stg.ct = strlen(str);
+}
+
+void stringToUpper(string &str)
+{
+    for (int i = 0; i < str.length(); i++)
+        str[i] = toupper(str[i]);
+    cout << str;
+}
+
+void setStructCandy(CandyBar &candy, string nm, const double w, const int ccl)
+{
+    candy.name = nm;
+    candy.weight = w;
+    candy.ccal = ccl;
+}
+
+void showStructCandy(const CandyBar &candy)
+{
+    cout << candy.name << "\n"
+         << candy.weight << "\n"
+         << candy.ccal << "\n";
 }
 
 void showStr(const char *str, int n)
@@ -283,23 +477,7 @@ void showStr(const char *str, int n)
     sum++;
 }
 
-template <typename T>
-void ShowArray(T arr[], int n)
-{
-    cout << "Template A\n";
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << ' ';
-    cout << endl;
-}
 
-template <typename T>
-void ShowArray(T * arr[], int n)
-{
-    cout << "Template B\n";
-    for (int i = 0; i < n; i++)
-        cout << *arr[i] << ' ';
-    cout << endl;
-}
 
 /*Ёта функци€ возвращает указатель на новую строку,
 состо€щую из первых n символов строки str*/
