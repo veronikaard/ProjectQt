@@ -7,4 +7,5 @@ SOURCES += main.cpp \
     file2.cpp
 
 HEADERS += \
-    coordin.h
+    coordin.h \
+    namesp.h

@@ -50,7 +50,8 @@ SOURCES       = ..\Exec9\main.cpp \
 OBJECTS       = debug/main.o \
 		debug/file2.o
 
-DIST          =  coordin.h ..\Exec9\main.cpp \
+DIST          =  coordin.h \
+		namesp.h ..\Exec9\main.cpp \
 		..\Exec9\file2.cpp
 QMAKE_TARGET  = Exec9
 DESTDIR        = debug\ #avoid trailing-slash linebreak
