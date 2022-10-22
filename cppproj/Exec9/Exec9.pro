@@ -4,7 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    file2.cpp
+    file2.cpp \
+    namesp.cpp
 
 HEADERS += \
     coordin.h \
