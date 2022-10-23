@@ -5,8 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     file2.cpp \
-    namesp.cpp
+    namesp.cpp \
+    golf.cpp
 
 HEADERS += \
     coordin.h \
-    namesp.h
+    namesp.h \
+    golf.h

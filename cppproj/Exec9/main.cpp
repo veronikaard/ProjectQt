@@ -2,6 +2,7 @@
 #include "coordin.h"
 #include <new>
 #include "namesp.h"
+#include "golf.h"
 
 void other(void);
 void another(void);
@@ -83,12 +84,29 @@ int main()
 
     //Listing 9.11 - 9.13
     //Пример пространства имен
-    using debts::Debt;
+    /*using debts::Debt;
     using debts::showDebt;
     Debt golf = {{"Denny", "Goatsderf"}, 120.0};
     showDebt(golf);
     other();
-    another();
+    another();*/
+
+    //Упражнение 1
+    golf ann;
+    setgolf(ann, "Ann Birdfree", 24);
+    showgolf(ann);
+
+    golf andy;
+    std::cout << setgolf(andy) << std::endl;
+    showgolf(andy);
+
+    handycap(andy, 123);
+    showgolf(andy);
+
+    //Упражнение 2
+    //Упражнение 3
+    //Упражнение 4
+    //Упражнение 5
 
 
     return 0;
