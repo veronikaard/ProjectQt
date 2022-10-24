@@ -22,7 +22,6 @@ int setgolf(golf &g)
     cout << "Enter name player: ";
     cin.get(g.fullname, Len);
 
-
     cout << ", enter handycap players: ";
     cin >> g.handicap;
     if (strlen(g.fullname) > 0)
