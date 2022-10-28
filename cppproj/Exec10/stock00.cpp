@@ -1,7 +1,7 @@
 #include "stock00.h"
 #include <iostream>
 
-void Stock::acquare(const std::string &co, long n, double pr)
+Stock::Stock(const std::string &co, long n, double pr)
 {
     company = co;
     if (n < 0)
@@ -15,6 +15,29 @@ void Stock::acquare(const std::string &co, long n, double pr)
     share_val = pr;
     set_tot();
 }
+
+Stock::Stock()
+{
+    company = "no name";
+    shares = 0;
+    share_val = 0;
+    total_val = 0;
+}
+
+/*void Stock::acquare(const std::string &co, long n, double pr)
+{
+    company = co;
+    if (n < 0)
+    {
+        std::cout << "Количество пакетов не может быть отрицательным " << company
+                  << "устанавливается в 0." << std::endl;
+        shares = 0;
+    }
+    else
+        shares = n;
+    share_val = pr;
+    set_tot();
+}*/
 
 void Stock::buy(long num, double price)
 {
@@ -58,10 +81,15 @@ void Stock::update(double price)
     set_tot();
 }
 
-void Stock::show()
+void Stock::show() const
 {
     std::cout << "Компания: " << company
               << "\n\tКоличество пакетов: " << shares
               << "\n\tЦена пакета: $" << share_val
               << "\n\tОбщая стоимость: $" << total_val << std::endl;
+}
+
+Stock::~Stock()
+{
+    std::cout << "Buy, " << company << "!\n";
 }
