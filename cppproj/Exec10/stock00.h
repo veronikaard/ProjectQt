@@ -21,6 +21,7 @@ public:
     void sell(long num, double price);
     void update(double price);
     void show() const; //const дает гарантию, что не будет менять данные
+    const Stock & topval(const Stock &s) const;
 };
 
 #endif // STOCK00_H
