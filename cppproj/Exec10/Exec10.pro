@@ -5,8 +5,16 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     stock00.cpp \
-    stack.cpp
+    stack.cpp \
+    bankaccount.cpp \
+    person.cpp \
+    golf.cpp \
+    sales.cpp
 
 HEADERS += \
     stock00.h \
-    stack.h
+    stack.h \
+    bankaccount.h \
+    person.h \
+    golf.h \
+    sales.h

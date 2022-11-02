@@ -1,7 +1,15 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef unsigned long Item;
+struct customer
+{
+    char fullname[35];
+    double payment;
+};
+
+//typedef unsigned long Item;
+typedef customer Item;
+
 
 class Stack
 {
