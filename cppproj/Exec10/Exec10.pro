@@ -9,7 +9,10 @@ SOURCES += main.cpp \
     bankaccount.cpp \
     person.cpp \
     golf.cpp \
-    sales.cpp
+    sales.cpp \
+    Move.cpp \
+    plorg.cpp \
+    list.cpp
 
 HEADERS += \
     stock00.h \
@@ -17,4 +20,7 @@ HEADERS += \
     bankaccount.h \
     person.h \
     golf.h \
-    sales.h
+    sales.h \
+    Move.h \
+    plorg.h \
+    list.h

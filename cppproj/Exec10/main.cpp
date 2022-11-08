@@ -5,8 +5,13 @@
 #include "person.h"
 #include "golf.h"
 #include "sales.h"
+#include "Move.h"
+#include "plorg.h"
+#include "list.h"
 
 using namespace std;
+
+void addition(ItemList &il);
 
 int main()
 {
@@ -134,7 +139,7 @@ int main()
     sal.showSales();*/
 
     //Упражнение 5
-    using std::cin;
+    /*using std::cin;
     using std::cout;
     Stack st;
     char ch;
@@ -184,11 +189,53 @@ int main()
         cout << "Введите А - чтобы добавить заказчика, Р - удалить,"
                 "Q - завершить.\n";
     };
-    cout << "Bye!\n";
+    cout << "Bye!\n";*/
 
     //Упражнение 6
+    /*Move pos(12.2, 45.3);
+    pos.showmove();
+    //pos.reset(4, 99);
+    //pos.showmove();
+    Move posit(2, 7);
+    posit.showmove();
+
+    Move test = pos.add(posit);
+    test.showmove();*/
+
     //Упражнение 7
+    /*Plorg one;
+    one.Show();
+
+    Plorg two("Veron", 150);
+    two.Show();
+
+    two.setCI(10);
+    two.Show();*/
+
     //Упражнение 8
+    List l1;
+
+    if (l1.isEmpty())
+        cout << "List is empty\n";
+    else
+        cout << "List not empty\n";
+
+    if (l1.AddElement(12))
+        cout << "added element\n";
+    else
+        cout << "not added\n";
+    l1.AddElement(0);
+    l1.AddElement(45);
+    l1.AddElement(3);
+
+    l1.visit(addition);
 
     return 0;
 }
+
+void addition(ItemList &il)
+{
+    ItemList test = 5;
+    il += test;
+}
+

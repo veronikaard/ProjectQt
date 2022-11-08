@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\stock00.o
+./release\stack.o
+./release\bankaccount.o
+./release\person.o
+./release\golf.o
+./release\sales.o
+./release\Move.o
+./release\plorg.o
+./release\list.o
+);

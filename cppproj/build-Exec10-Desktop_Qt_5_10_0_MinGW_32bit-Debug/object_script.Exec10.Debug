@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\stock00.o
+./debug\stack.o
+./debug\bankaccount.o
+./debug\person.o
+./debug\golf.o
+./debug\sales.o
+./debug\Move.o
+./debug\plorg.o
+./debug\list.o
+);
