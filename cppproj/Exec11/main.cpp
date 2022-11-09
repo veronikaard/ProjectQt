@@ -4,31 +4,37 @@
 int main()
 {
 
-    //Listing 11.0 - 11.3
+    //Listing 11.0 - 11.6
     using std::cout;
-    using std::endl;
 
     Time planning;
     Time coding(2, 40);
     Time fixing(5, 55);
     Time total;
+    Time diff;
+    Time mult;
 
     cout << "planning time = ";
     planning.Show();
-    cout << endl;
 
     cout << "coding time = ";
     coding.Show();
-    cout << endl;
 
     cout << "fixing time = ";
     fixing.Show();
-    cout << endl;
 
-    total = coding.Sum(fixing);
-    cout << "coding.Sum(fixing) = ";
+    total = coding + fixing;
+    cout << "coding + fixing = ";
     total.Show();
-    cout << endl;
+
+    diff = fixing - coding;
+    diff.Show();
+
+    mult = 2 * coding;
+    mult.Show();
+
+    mult = coding * 9;
+    mult.Show();
 
     return 0;
 }
