@@ -7,7 +7,7 @@ int main()
     //Listing 11.0 - 11.6
     using std::cout;
 
-    Time planning;
+    /*Time planning;
     Time coding(2, 40);
     Time fixing(5, 55);
     Time total;
@@ -34,7 +34,11 @@ int main()
     mult.Show();
 
     mult = coding * 9;
-    mult.Show();
+    mult.Show();*/
+
+    Time trip(10, 20);
+    //trip.Show();
+    cout << "Time: " << trip;
 
     return 0;
 }

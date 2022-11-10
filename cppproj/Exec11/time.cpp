@@ -58,14 +58,10 @@ Time Time::operator *(double n) const
     return result;
 }
 
-Time operator*(double m, const Time &t)
+std::ostream & operator<<(std::ostream &os, const Time &t)
 {
-    /*Time result;
-    long totalminutes = t.hours * m * 60 + t.minutes * m;
-    result.minutes = totalminutes % 60;
-    result.hours = totalminutes / 60;
-    return result;*/
-    return t * m;
+    os << t.hours << " hours, " << t.minutes << " minutes\n";
+    return os;
 }
 
 void Time::Show() const
