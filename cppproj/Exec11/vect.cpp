@@ -18,7 +18,7 @@ namespace VECTOR {
         mode = RECT;
     }
 
-    Vector::Vector(double n1, double n2, Mode form = RECT)
+    Vector::Vector(double n1, double n2, Mode form)
     {
         mode = form;
         if (form == RECT)
@@ -43,7 +43,7 @@ namespace VECTOR {
         }
     }
 
-    void Vector::reset(double n1, double n2, Mode form = RECT)
+    void Vector::reset(double n1, double n2, Mode form)
     {
         mode = form;
         if (form == RECT)
@@ -98,12 +98,12 @@ namespace VECTOR {
         return Vector(n*x, n*y);
     }
 
-    friend Vector::Vector operator*(double n, const Vector &a)
+    Vector operator*(double n, const Vector &a)
     {
         return a * n;
     }
 
-    std::ostream & Vector::operator<<(std::ostream &os, const Vector &v)
+    std::ostream & operator<<(std::ostream &os, const Vector &v)
     {
         if (v.mode == Vector::RECT)
             os << "(x,y) = (" << v.x << ", " << v.y << ")\n";
