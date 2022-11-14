@@ -4,10 +4,10 @@
 //#include <cstdlib>
 //#include <ctime>
 //#include <locale>
-
-
+#include "stonewt.h"
 #include "vect.h"
-
+using std::cout;
+void display(const Stonewt &st, int n);
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -57,7 +57,7 @@ int main()
 
     //srand(time(0));
 
-    double direction;
+    /*double direction;
     Vector step;
     Vector result(0.0, 0.0);
     unsigned long steps = 0;
@@ -93,7 +93,57 @@ int main()
     cout << "Bye!\n";
     cin.clear();
     while (cin.get() != '\n')
-        continue;
+        continue;*/
+
+    //Автоматические преобразования и привидения типов в классах
+    /*Stonewt blossom(132.5);
+    Stonewt butter(10, 2);
+    Stonewt buble;
+    //buble = 19.6;
+
+    blossom.show_lbs();
+    blossom.show_stn();
+
+    butter.show_lbs();
+    butter.show_stn();
+
+    buble.show_lbs();
+    buble.show_stn();*/
+
+    //Listing 11.18
+    /*Stonewt incognito = 275;
+    Stonewt wolfe(285.7);
+    Stonewt taft(21, 8);
+
+    incognito.show_stn();
+    wolfe.show_stn();
+    taft.show_lbs();
+
+    incognito = 276.8;
+    taft = 325;
+    incognito.show_stn();
+    taft.show_lbs();
+
+    display(taft, 2);
+    display(422, 2);*/
+
+    Stonewt poppins(9, 2.8);
+    double p_wt = poppins;
+    poppins.show_stn();
+    poppins.show_lbs();
+    cout << p_wt << "\n";
+    cout << int (poppins) << "\n";
+
 
     return 0;
+}
+
+void display(const Stonewt &st, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Wow! ";
+        st.show_stn();
+    }
+
 }

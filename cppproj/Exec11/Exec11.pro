@@ -5,8 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     time.cpp \
-    vect.cpp
+    vect.cpp \
+    stonewt.cpp
 
 HEADERS += \
     time.h \
-    vect.h
+    vect.h \
+    stonewt.h
