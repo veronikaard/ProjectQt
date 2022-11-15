@@ -31,7 +31,7 @@ void Stonewt::show_stn() const
     cout << stone << " stone, " << pds_left << " pounds\n";
 }
 
-Stonewt::operator int() const
+/*Stonewt::operator int() const
 {
     return int (pounds + 0.5);
 }
@@ -39,6 +39,13 @@ Stonewt::operator int() const
 Stonewt::operator double() const
 {
     return pounds;
+}*/
+
+Stonewt operator+(const Stonewt &st1, const Stonewt &st2)
+{
+    double pds = st1.pounds + st2.pounds;
+    Stonewt sum(pds);
+    return sum;
 }
 
 Stonewt::~Stonewt()

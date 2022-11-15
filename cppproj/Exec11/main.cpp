@@ -127,13 +127,18 @@ int main()
     display(taft, 2);
     display(422, 2);*/
 
-    Stonewt poppins(9, 2.8);
+    /*Stonewt poppins(9, 2.8);
     double p_wt = poppins;
     poppins.show_stn();
     poppins.show_lbs();
     cout << p_wt << "\n";
-    cout << int (poppins) << "\n";
+    cout << int (poppins) << "\n";*/
 
+    Stonewt jenny(9, 12);
+    //Stonewt benny(12, 8);
+    double benny  =148.2;
+    Stonewt total;
+    total = jenny + benny;
 
     return 0;
 }
