@@ -137,6 +137,11 @@ namespace VECTOR {
         y = mag * sin(ang);
     }
 
+    Vector::operator double() const
+    {
+        return mag;
+    }
+
     Vector::~Vector()
     {
 

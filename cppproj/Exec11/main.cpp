@@ -6,6 +6,8 @@
 //#include <locale>
 #include "stonewt.h"
 #include "vect.h"
+#include <fstream>
+
 using std::cout;
 void display(const Stonewt &st, int n);
 int main()
@@ -49,11 +51,11 @@ int main()
     cout << "Time: " << trip;*/
 
     //Listing 11.15 Vector
-    using VECTOR::Vector;
+    //using VECTOR::Vector;
     //using std::cout;
     //using std::endl;
     //using std::cin;
-    using namespace std;
+    //using namespace std;
 
     //srand(time(0));
 
@@ -134,11 +136,84 @@ int main()
     cout << p_wt << "\n";
     cout << int (poppins) << "\n";*/
 
-    Stonewt jenny(9, 12);
+    /*Stonewt jenny(9, 12);
     //Stonewt benny(12, 8);
     double benny  =148.2;
     Stonewt total;
-    total = jenny + benny;
+    total = jenny + benny;*/
+
+    //Вопросы для самоконтроля 1
+    /*Stonewt iam(10, 8);
+    iam.show_stn();
+    Stonewt garry;
+    garry = 2.0 * iam;
+    garry.show_stn();*/
+
+    //Вопросы для самоконтроля 7
+    /*using VECTOR::Vector;
+    Vector vect(4.2, 1.0);
+    double v = vect;
+    cout << v;*/
+
+    //Упражнение 1
+    using VECTOR::Vector;
+    using namespace std;
+    //srand(time(0));
+    ofstream fout;               //создание дескриптора файла
+    fout.open("thewalk.txt");   //Открываем файл
+    double direction;
+    Vector step;
+    Vector result(0.0, 0.0);
+    unsigned long steps = 0;
+
+    double target;  //заданное расстояние
+    double dstep;   //длина шага
+
+    cout << "Введите заданное расстояние, q для завершения: ";
+
+    while(cin >> target)
+    {
+        cout << "Введите длину шага: ";
+        if (!(cin >> dstep))
+            break;
+        fout << "Заданное расстояние: " << target << ", длина шага: " << dstep << endl;
+        while (result.magval() < target)
+        {
+            direction = rand() % 360;
+            step.reset(dstep, direction, Vector::POL);
+            result = result + step;
+            fout << steps << ": (x, y) = (" << step.xval() << "," << step.yval() << ")\n";
+            steps++;
+        }
+
+        cout << "После " << steps << " шагов объект имеет следующее положение: ";
+        cout << result;
+        fout << "После " << steps << " шагов объект имеет следующее положение: ";
+        fout << result;
+        result.polar_mode();
+        cout << "или " << result ;
+        cout << "Среднее расстояние на один метр = " << result.magval()/steps << endl;
+        fout << "или " << result ;
+        fout << "Среднее расстояние на один метр = " << result.magval()/steps << endl;
+        steps = 0;
+        result.reset(0.0, 0.0);
+        cout << "Введите заданное расстояние, q для завершения: ";
+    }
+
+    cout << "Bye!\n";
+    cin.clear();
+    while (cin.get() != '\n')
+        continue;
+    fout.close();       //Закрываем файл
+
+    //Упражнение 2
+    //Упражнение 3
+    //Упражнение 4
+    //Упражнение 5
+    //Упражнение 6
+    //Упражнение 7
+
+
 
     return 0;
 }

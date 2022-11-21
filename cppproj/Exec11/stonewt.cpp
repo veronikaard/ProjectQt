@@ -1,5 +1,5 @@
 #include "stonewt.h"
-#include <iostream>
+#include <cmath>
 using std::cout;
 
 Stonewt::Stonewt(double lbs)
@@ -29,6 +29,20 @@ void Stonewt::show_lbs() const
 void Stonewt::show_stn() const
 {
     cout << stone << " stone, " << pds_left << " pounds\n";
+}
+
+Stonewt Stonewt::operator *(double num) const
+{
+    Stonewt st;
+
+    int total = pds_left * num  + stone * num * Lbs_per_stn;
+
+    st.stone = total / Lbs_per_stn;
+    st.pds_left = total % Lbs_per_stn;
+
+    st.pounds = pounds * num;
+
+    return st;
 }
 
 /*Stonewt::operator int() const

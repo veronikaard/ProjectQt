@@ -1,6 +1,6 @@
 #ifndef STONEWT_H
 #define STONEWT_H
-
+#include <iostream>
 
 class Stonewt
 {
@@ -18,6 +18,8 @@ public:
     void show_stn() const;              //отображение веса в формате стоунов
     //explicit operator int() const;      //функции преобразования
     //explicit operator double() const;
+    Stonewt operator*(double num) const;
+    friend Stonewt operator*(double num, const Stonewt &st){return st * num;}
     friend Stonewt operator+(const Stonewt &st1, const Stonewt &st2);
  };
 
