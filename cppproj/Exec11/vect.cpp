@@ -1,11 +1,5 @@
 #include "vect.h"
-#include <cmath>
-using std::sqrt;
-using std::sin;
-using std::cos;
-using std::atan;
-using std::atan2;
-using std::cout;
+
 
 namespace VECTOR {
 
@@ -14,7 +8,7 @@ namespace VECTOR {
 
     Vector::Vector()
     {
-        x = y = mag = ang = 0.0;
+        x = y = 0.0;
         mode = RECT;
     }
 
@@ -25,20 +19,20 @@ namespace VECTOR {
         {
             x = n1;
             y = n2;
-            set_mag();
-            set_ang();
+            //set_mag();
+            //set_ang();
         }
         else if (form == POL)
         {
-            mag = n1;
-            ang = n2 / Rad_to_deg;
-            set_x();
-            set_y();
+            //mag = n1;
+            //ang = n2 / Rad_to_deg;
+            set_x(n1, n2);
+            set_y(n1, n2);
         }
         else
         {
             cout << "Некорректный третий аргумент, вектор устанавливается в 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -50,20 +44,22 @@ namespace VECTOR {
         {
             x = n1;
             y = n2;
-            set_mag();
-            set_ang();
+            magval();
+            angval();
+            //set_mag();
+            //set_ang();
         }
         else if (form == POL)
         {
-            mag = n1;
-            ang = n2 / Rad_to_deg;
-            set_x();
-            set_y();
+            //mag = n1;
+            //ang = n2 / Rad_to_deg;
+            set_x(n1, n2);
+            set_y(n1, n2);
         }
         else
         {
             cout << "Некорректный третий аргумент, вектор устанавливается в 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -108,38 +104,38 @@ namespace VECTOR {
         if (v.mode == Vector::RECT)
             os << "(x,y) = (" << v.x << ", " << v.y << ")\n";
         else if (v.mode == Vector::POL)
-            os << "(m,a) = (" << v.mag << ", " << v.ang * Rad_to_deg << ")\n";
+            os << "(m,a) = (" << v.magval() << ", " << v.angval() * Rad_to_deg << ")\n";
         else
             os << "Недопустимый режим объекта Vector\n";
         return os;
     }
 
-    void Vector::set_mag()
+    /*void Vector::set_mag()
     {
         mag = sqrt(x*x + y*y);
-    }
+    }*/
 
-    void Vector::set_ang()
+    /*void Vector::set_ang()
     {
         if (x == 0.0 && y == 0.0)
             ang = 0.0;
         else
             ang = atan2(y, x);
+    }*/
+
+    void Vector::set_x(double mod, double ang)
+    {
+        x = mod * cos(ang/Rad_to_deg);
     }
 
-    void Vector::set_x()
+    void Vector::set_y(double mod, double ang)
     {
-        x = mag * cos(ang);
-    }
-
-    void Vector::set_y()
-    {
-        y = mag * sin(ang);
+        y = mod * sin(ang/Rad_to_deg);
     }
 
     Vector::operator double() const
     {
-        return mag;
+        return magval();
     }
 
     Vector::~Vector()

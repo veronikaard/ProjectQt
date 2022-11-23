@@ -156,7 +156,7 @@ int main()
     cout << v;*/
 
     //Упражнение 1
-    using VECTOR::Vector;
+    /*using VECTOR::Vector;
     using namespace std;
     //srand(time(0));
     ofstream fout;               //создание дескриптора файла
@@ -204,10 +204,110 @@ int main()
     cin.clear();
     while (cin.get() != '\n')
         continue;
-    fout.close();       //Закрываем файл
+    fout.close();*/       //Закрываем файл
 
     //Упражнение 2
+    /*using VECTOR::Vector;
+    using namespace std;
+
+    //srand(time(0));
+    double direction;
+    int N;
+    Vector step;
+    Vector result(0.0, 0.0);
+    unsigned long steps = 0;
+
+    double target;  //заданное расстояние
+    double dstep;   //длина шага
+
+    cout << "Введите количество попыток: ";
+    cin >> N;
+    cout << "Введите заданное расстояние, q для завершения: ";
+
+    while(cin >> target)
+    {
+        cout << "Введите длину шага: ";
+        if (!(cin >> dstep))
+            break;
+        while (result.magval() < target)
+        {
+            direction = rand() % 360;
+            step.reset(dstep, direction, Vector::POL);
+            result = result + step;
+            //cout << direction << " " << dstep << " " << result.magval() << endl;
+            steps++;
+
+        }
+
+        cout << "После " << steps << " шагов объект имеет следующее положение: ";
+        cout << result;
+        result.polar_mode();
+        cout << "или " << result ;
+        cout << "Среднее расстояние на один метр = " << result.magval()/steps << endl;
+        steps = 0;
+        result.reset(0.0, 0.0);
+        cout << "Введите заданное расстояние, q для завершения: ";
+    }
+
+    cout << "Bye!\n";
+    cin.clear();
+    while (cin.get() != '\n')
+        continue;*/
+
     //Упражнение 3
+    using VECTOR::Vector;
+    using namespace std;
+
+    //srand(time(0));
+    double direction;
+    int N;
+    Vector step;
+    Vector result(0.0, 0.0);
+    unsigned long steps = 0;
+
+    double target = 50;  //заданное расстояние
+    double dstep = 2;   //длина шага
+
+    double MaxSteps = 0.0;
+    double MinSteps;
+    double AverSteps = 0.0;
+
+    cout << "Введите количество попыток: ";
+    cin >> N;
+
+    for(int i = 0; i < N; i++)
+    {
+        while (result.magval() < target)
+        {
+            direction = rand() % 360;
+            step.reset(dstep, direction, Vector::POL);
+            result = result + step;
+            steps++;
+        }
+        if (i == 0) MinSteps = steps;
+        if (steps > MaxSteps) MaxSteps = steps;
+        if (steps < MinSteps) MinSteps = steps;
+        AverSteps += steps/N;
+
+        cout << "После " << steps << " шагов объект имеет следующее положение: ";
+        cout << result;
+        result.polar_mode();
+        cout << "или " << result ;
+        cout << "Среднее расстояние на один метр = " << result.magval()/steps << endl;
+        steps = 0;
+        result.reset(0.0, 0.0);
+    }
+
+    cout << "Максимальное к-во шагов: " << MaxSteps << endl;
+    cout << "Минимальное к-во шагов: " << MinSteps << endl;
+    cout << "Среднее к-во шагов: " << AverSteps << endl;
+
+
+    cout << "Bye!\n";
+    cin.clear();
+    while (cin.get() != '\n')
+        continue;
+
     //Упражнение 4
     //Упражнение 5
     //Упражнение 6

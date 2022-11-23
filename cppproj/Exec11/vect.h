@@ -1,6 +1,13 @@
 #ifndef VECT_H
 #define VECT_H
 #include <iostream>
+#include <cmath>
+using std::sqrt;
+using std::sin;
+using std::cos;
+using std::atan;
+using std::atan2;
+using std::cout;
 
 namespace VECTOR {
     class Vector
@@ -10,15 +17,15 @@ namespace VECTOR {
     private:
         double x;               //горизонтальное значение
         double y;               //вертикальное значение
-        double mag;             //длина вектора
-        double ang;             //направление вектора в градусах
+        //double mag;             //длина вектора
+        //double ang;             //направление вектора в градусах
         Mode mode;              //RECT или POL
 
         /*Закрытые методы для установки значений*/
-        void set_mag();
-        void set_ang();
-        void set_x();
-        void set_y();
+        //void set_mag();
+        //void set_ang();
+        void set_x(double mod, double ang);
+        void set_y(double mod, double ang);
     public:
         Vector();
         Vector(double n1, double n2, Mode form = RECT);
@@ -26,8 +33,17 @@ namespace VECTOR {
         ~Vector();
         double xval() const {return x;}         //сообщает значение х
         double yval() const {return y;}         //сообщает значение у
-        double magval() const {return mag;}     //сообщает модуль
-        double angval() const {return ang;}     //сообщает угол
+        double magval() const //сообщает модуль
+        {
+             return sqrt(x*x + y*y);
+        }
+        double angval() const
+        {
+            if (x == 0.0 && y == 0.0)
+                    return 0.0;
+                else
+                    return atan2(y, x);
+        }     //сообщает угол
         void polar_mode();                      //устанавливает режим POL
         void rect_mode();                       //устанавливает режим RECT
 
