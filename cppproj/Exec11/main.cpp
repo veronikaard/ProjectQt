@@ -1,5 +1,5 @@
 #include <iostream>
-//#include "time.h"
+#include "time.h"
 #include <iostream>
 //#include <cstdlib>
 //#include <ctime>
@@ -7,8 +7,11 @@
 #include "stonewt.h"
 #include "vect.h"
 #include <fstream>
+#include "complex0.h"
 
 using std::cout;
+using std::endl;
+using std::cin;
 void display(const Stonewt &st, int n);
 int main()
 {
@@ -255,7 +258,7 @@ int main()
         continue;*/
 
     //Упражнение 3
-    using VECTOR::Vector;
+    /*using VECTOR::Vector;
     using namespace std;
 
     //srand(time(0));
@@ -306,14 +309,84 @@ int main()
     cout << "Bye!\n";
     cin.clear();
     while (cin.get() != '\n')
-        continue;
+        continue;*/
 
     //Упражнение 4
+    /*Time aida(3, 35);
+    Time tosca(2, 48);
+    Time temp;
+    cout << "aida: " << aida << "tosca: " << tosca;
+    temp = aida + tosca;
+    cout << "aida + tosca = " << temp;
+    cout << "aida - tosca = " << aida - tosca;
+    cout << "aida * 1.17 = " << aida * 1.17;
+    cout << "1.17 * aida = " << 1.17 * aida;*/
+
     //Упражнение 5
+    /*Stonewt blossom(132.5);
+    Stonewt butter(10, 2);
+    blossom.SetState(blossom.pouFlo);
+    butter.SetState(blossom.pouFlo);
+    cout << "blossom =  " << blossom;
+    cout << "butter =  " << butter;
+    cout << "butter - blossom = " << butter - blossom;
+    cout << "butter + blossom = " << butter + blossom;
+    cout << "butter * 5.0 = " << butter * 5.0;
+    cout << "5.0 * butter = " << 5.0 * butter;*/
+
     //Упражнение 6
+    /*Stonewt array[6] =
+    {
+        {132.5}, {11.2}, {11.0}
+    };
+
+    Stonewt min;
+    Stonewt max;
+
+    double test;
+    cout << "Введите фунты: ";
+    for (int i = 3; i < 6; i++)
+    {
+        cin >> test;
+        array[i] = Stonewt(test);
+        cout << "Введите фунты: ";
+    }
+
+    cout << endl;
+    min = max = array[0];
+    int count = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        if (array[i] < min) min = array[i];
+        if (array[i] > max) max = array[i];
+
+        if (array[i] >= 11.0) count++;
+        cout << array[i];
+    }
+
+    cout << "Min = " << min;
+    cout << "Max = " << max;
+    cout << "Кол-во эл-в, больших 11.0: " << count;*/
+
     //Упражнение 7
+    Complex a(3.0, 4.0);
+    Complex c;
 
+    cout << "a = " << a << endl;
+    cout << "c = " << c << endl;
+    cout << "Введите комплексное число, q для завершения: ";
 
+    while (cin >> c)
+    {
+        cout << "/nc = " << c << endl;
+        cout << "Сопряженное число ~c = " << ~c << endl;
+        cout << "a + c = " << a + c  << endl;
+        cout << "a - c = " << a - c  << endl;
+        cout << "a * c = " << a * c  << endl;
+        cout << "c * 2 = " << c * 2  << endl;
+        cout << "2 * c = " << 2 * c  << endl;
+        cout << "Введите комплексное число, q для завершения: ";
+    }
 
     return 0;
 }
@@ -323,7 +396,7 @@ void display(const Stonewt &st, int n)
     for (int i = 0; i < n; i++)
     {
         cout << "Wow! ";
-        st.show_stn();
+        //st.show_stn();
     }
 
 }

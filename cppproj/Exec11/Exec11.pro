@@ -6,9 +6,11 @@ CONFIG -= qt
 SOURCES += main.cpp \
     time.cpp \
     vect.cpp \
-    stonewt.cpp
+    stonewt.cpp \
+    complex0.cpp
 
 HEADERS += \
     time.h \
     vect.h \
-    stonewt.h
+    stonewt.h \
+    complex0.h

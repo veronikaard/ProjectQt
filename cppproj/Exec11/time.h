@@ -10,14 +10,22 @@ class Time
 public:
     Time();
     Time(int h, int m = 0);
-    friend Time operator*(double m, const Time &t){return t * m;}
+
     void AddMin(int min);
     void AddHr(int h);
-    void Reset(int h = 0, int m = 0);
-    Time operator+(const Time &t) const;
-    Time operator-(const Time &t) const;
-    Time operator*(double n) const;
+    void Reset(int h = 0, int m = 0);    
     void Show() const;
+
+    //Перегруженные функции
+    //Time operator+(const Time &t) const;
+    //Time operator-(const Time &t) const;
+    //Time operator*(double n) const;
+
+    //Дружественные функции
+    friend Time operator+(const Time &t1, const Time &t2);
+    friend Time operator-(const Time &t1, const Time &t2);
+    friend Time operator*(const Time &t, double n);
+    friend Time operator*(double n, const Time &t){return t * n;}
     friend std::ostream & operator<<(std::ostream &os, const Time &t);
 };
 
