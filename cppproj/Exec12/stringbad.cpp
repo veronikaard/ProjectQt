@@ -32,7 +32,7 @@ std::ostream & operator<<(std::ostream &os, const StringBad &st)
 
 StringBad::~StringBad()
 {
-    cout << "\"" << str << "\" объект удален\n";
+    cout << "\"" << str << "\" объект удален, ";
     --num_strings;
     cout << num_strings << " осталось\n";
     delete [] str;
