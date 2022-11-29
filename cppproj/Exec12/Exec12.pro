@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    stringbad.cpp
+    stringbad.cpp \
+    string.cpp
 
 HEADERS += \
-    stringbad.h
+    stringbad.h \
+    string.h

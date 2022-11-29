@@ -6,16 +6,20 @@
 class StringBad
 {
 private:
-    char *str;                  //указатель на строку
-    int len;                    //длина строки
-    static int num_strings;     //количество объектов
+    char *str;                      //указатель на строку
+    int len;                        //длина строки
+    static int num_strings;         //количество объектов
 public:
-    StringBad(const char *s);   //конструктор
-    StringBad();                //конструктор по умолчанию
-    ~StringBad();               //деструктор
+    StringBad(const char *s);       //конструктор
+    StringBad();                    //конструктор по умолчанию
+    StringBad(const StringBad &s);  //явный конструктор копировани€
+    ~StringBad();                   //деструктор
 
-    //ƒружественна€ ф-€
+
+    //ƒружественные ф-и
     friend std::ostream & operator<<(std::ostream &os, const StringBad &st);
+
+    StringBad & operator=(const StringBad &);
 };
 
 #endif // STRINGBAD_H
