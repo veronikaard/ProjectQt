@@ -1,7 +1,7 @@
 #ifndef STRINGBAD_H
 #define STRINGBAD_H
 #include <iostream>
-#include <cstring>
+
 
 class StringBad
 {

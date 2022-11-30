@@ -1,4 +1,5 @@
-#include "string.h"
+#include "string1.h"
+#include <cstring>
 using std::cout;
 
 //Инициализация статического члена класса
@@ -9,6 +10,7 @@ String::String()
     len = 0;
     str = new char[1];
     str[0] = '\0';
+    num_strings++;
 }
 
 String::String(const char *s)
@@ -19,13 +21,18 @@ String::String(const char *s)
     num_strings++;                          //счетчик объектов
 }
 
+int String::HowMany()
+{
+    return num_strings;
+}
+
 ostream & operator<<(ostream &os, const String &st)
 {
     os << st.str;
     return os;
 }
 
-istream & operator<<(istream &is, String &st)
+istream & operator>>(istream &is, String &st)
 {
     char temp[String::CINLIM];
     is.get(temp, String::CINLIM);

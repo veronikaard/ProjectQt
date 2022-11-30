@@ -5,8 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     stringbad.cpp \
-    string.cpp
+    string1.cpp
 
 HEADERS += \
     stringbad.h \
-    string.h
+    string1.h

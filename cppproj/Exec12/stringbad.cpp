@@ -1,12 +1,16 @@
 #include "stringbad.h"
+#include <cstring>
+
 using std::cout;
+using std::strlen;
+using namespace std;
 
 //Инициализация статического члена класса
 int StringBad::num_strings = 0;
 
 StringBad::StringBad(const char *s)
 {
-    len = std::strlen(s);                   //установка размера
+    len = strlen(s);                   //установка размера
     str = new char[len + 1];                //выделение памяти
     std::strcpy(str, s);                    //инициализация указателя
     num_strings++;                          //счетчик объектов
