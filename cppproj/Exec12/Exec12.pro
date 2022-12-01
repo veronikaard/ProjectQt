@@ -5,8 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     stringbad.cpp \
-    string1.cpp
+    string1.cpp \
+    vect.cpp
 
 HEADERS += \
     stringbad.h \
-    string1.h
+    string1.h \
+    vect.h
