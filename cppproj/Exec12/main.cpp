@@ -4,6 +4,7 @@
 #include "stringbad.h"
 #include "string1.h"
 #include "vect.h"
+#include "queue.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ Vector Max(const Vector &v1, const Vector &v2);
 
 const int ArSize = 10;
 const int MaxLen = 81;
+
+const int MIN_PER_HR = 60;
+bool newcustomer(double x);
 
 int main()
 {
@@ -97,7 +101,7 @@ int main()
 
     //Листинг 12.7
     //Использование указателей на объекты
-    String name;
+    /*String name;
     cout << "Hi, wat's your name?\n";
     cin >> name;
     cout << name << ", пожалуйста, введите " << ArSize << " коротких фраз (или пустую "
@@ -150,9 +154,83 @@ int main()
              << " String объектов. Бай!\n";
     }
     else
-        cout << "Ничего не было введено!\n";
+        cout << "Ничего не было введено!\n";*/
+
+    //Listing 12.12
+    //Использование интерфейса queue
+    srand(time(0));
+    cout << "Введите максимальный размер очереди: ";
+    int qs;
+    cin >> qs;
+    Queue line(qs);
+    cout << "Введите количество эмулируемых часов: ";
+    int hours;
+    cin >> hours;
+
+    long cyclelimit = MIN_PER_HR * hours;
+    cout << "Введите количество клиентов в час: ";
+    double perhour;
+    cin >> perhour;
+    double min_per_cust;    //среднее время между появлениями
+    min_per_cust = MIN_PER_HR / perhour;
+    Item temp;              //данные нового клиента
+    long turnaways = 0;     //не допущены в полную очередь
+    long customers = 0;     //присоединены к очереди
+    long served = 0;        //обслужены во время эмуляции
+    long sum_line = 0;      //общая длина очереди
+    int wait_time = 0;      //время ддо освобождения банкомата
+    long line_wait = 0;     //ообщее время в очереди
+
+    //Запуск моделирования
+    for (int cycle = 0; cycle < cyclelimit; cycle++)
+    {
+        if (newcustomer(min_per_cust))  //есть подошедший клиент
+        {
+            if (line.isfull())
+                turnaways++;
+            else
+            {
+                customers++;
+                temp.set(cycle);
+                line.enqueue(temp);
+            }
+        }
+
+        if (wait_time <= 0 && !line.isempty() )
+        {
+            line.dequeue(temp);                 //обслуживание след клиента
+            wait_time = temp.ptime();
+            line_wait += cycle - temp.when();
+            served++;
+        }
+
+        if (wait_time > 0)
+            wait_time--;
+        sum_line += line.queuecount();
+    }
+
+    //Вывод результатов
+    if (customers > 0)
+    {
+        cout << "Принято клиентов: " << customers << endl;
+        cout << "обслужено клиентов: " << served << endl;
+        cout << "не принято клиентов: " << turnaways << endl;
+        cout << "средний размер очереди: ";
+        cout.precision(2);
+        cout.setf(ios_base::fixed, ios_base::floatfield);
+        cout << double (sum_line/cyclelimit) << endl;
+        cout << "среднее время ожидания " << double (line_wait / served ) << " минут\n";
+    }
+    else
+        cout << "Нет посетителей!\n";
+
 
     return 0;
+}
+
+bool newcustomer(double x)
+{
+    return (rand() * x / RAND_MAX < 1);
 }
 
 Vector Max(const Vector &v1, const Vector &v2)
