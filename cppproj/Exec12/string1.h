@@ -1,6 +1,7 @@
 #ifndef STRING1_H
 #define STRING1_H
 #include <iostream>
+#include <cctype>
 using std::istream;
 using std::ostream;
 
@@ -17,6 +18,9 @@ public:
     ~String();
     static const int CINLIM = 80;       //предел ввода дл€ cin
     int length() const {return len;}
+    void stringlow();
+    void stringup();
+    int timesChar(char ch);
 
     //ƒружественные ф-и
     friend ostream & operator<<(ostream &os, const String &st);
@@ -30,6 +34,7 @@ public:
     String & operator=(const char *);
     char & operator[](int i);               //предоставл€ют доступ к отдельным символам
     const char & operator[](int i) const;   //строки в виде массива
+    friend String operator+(const String &s1, const String &s2);
 
     static int HowMany();
 };

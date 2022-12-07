@@ -7,10 +7,12 @@ SOURCES += main.cpp \
     stringbad.cpp \
     string1.cpp \
     vect.cpp \
-    queue.cpp
+    queue.cpp \
+    cow.cpp
 
 HEADERS += \
     stringbad.h \
     string1.h \
     vect.h \
-    queue.h
+    queue.h \
+    cow.h

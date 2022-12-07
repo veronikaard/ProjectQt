@@ -96,6 +96,60 @@ const char & String::operator[](int i) const
     return str[i];
 }
 
+String operator+(const String &s1, const String &s2)
+{
+    int lenth = s1.len + s2.len;
+    char *temp = new char[lenth + 1];
+    strcpy(temp, s1.str);
+    strcpy(temp+s1.len, s2.str);
+    temp[lenth + 1] = '\0';
+    String s(temp);
+    return s;
+}
+
+void String::stringlow()
+{
+    char temp[len + 1];
+    int i = 0;
+    while (i < len) {
+        temp[i] = tolower(str[i]);
+        //str[i] = temp;
+        i++;
+    }
+    temp[len] = '\0';
+
+    delete [] str;
+    str = new char[len+1];
+    std::strcpy(str, temp);
+}
+
+void String::stringup()
+{
+    char temp[len + 1];
+    int i = 0;
+    while (i < len) {
+        temp[i] = toupper(str[i]);
+        i++;
+    }
+    temp[len] = '\0';
+
+    delete [] str;
+    str = new char[len+1];
+    std::strcpy(str, temp);
+}
+
+int String::timesChar(char ch)
+{
+    int count = 0;
+    int i = 0;
+    while (i < len) {
+        if (str[i] == ch)
+            count++;
+        i++;
+    }
+    return count;
+}
+
 String::~String()
 {
     --num_strings;

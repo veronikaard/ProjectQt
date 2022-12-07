@@ -5,6 +5,7 @@
 #include "string1.h"
 #include "vect.h"
 #include "queue.h"
+#include "cow.h"
 
 using namespace std;
 
@@ -158,7 +159,7 @@ int main()
 
     //Listing 12.12
     //Использование интерфейса queue
-    srand(time(0));
+    /*srand(time(0));
     cout << "Введите максимальный размер очереди: ";
     int qs;
     cin >> qs;
@@ -222,7 +223,37 @@ int main()
         cout << "среднее время ожидания " << double (line_wait / served ) << " минут\n";
     }
     else
-        cout << "Нет посетителей!\n";
+        cout << "Нет посетителей!\n";*/
+
+    //Упражнение 1
+    /*Cow cw;
+    cw.ShowCow();
+
+    Cow a("Veronika", "Driving", 50);
+    a.ShowCow();
+
+    Cow b(a);
+    b.ShowCow();
+
+    Cow c("Liza", "Hand made", 45);
+    c.ShowCow();
+
+    b = c;
+    b.ShowCow();*/
+
+    //Упранение 2
+    String s1 = "HIOP, HHHHHHPPPPPRRRR";
+    String s2 = "Varanika!";
+    cout << s1 + s2 << endl;
+
+    cout << "stringlow() = ";
+    s1.stringlow();
+    s2.stringup();
+
+    cout << s1 << endl;
+    cout << s2 << endl;
+
+    cout << s2.timesChar('A');
 
 
     return 0;
