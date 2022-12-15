@@ -6,6 +6,8 @@
 #include "vect.h"
 #include "queue.h"
 #include "cow.h"
+#include "stock00.h"
+#include "stack00.h"
 
 using namespace std;
 
@@ -242,7 +244,7 @@ int main()
     b.ShowCow();*/
 
     //Упранение 2
-    String s1 = "HIOP, HHHHHHPPPPPRRRR";
+    /*String s1 = "HIOP, HHHHHHPPPPPRRRR";
     String s2 = "Varanika!";
     cout << s1 + s2 << endl;
 
@@ -253,8 +255,167 @@ int main()
     cout << s1 << endl;
     cout << s2 << endl;
 
-    cout << s2.timesChar('A');
+    cout << s2.timesChar('A');*/
 
+    //Упражнение 3
+    /*const int STKS = 4;
+
+    //Создание массива инициализированных объектов
+    Stock stocks[STKS] = {
+        Stock("NanoSmart", 12, 20.0),
+        Stock("Boffo Objects", 200, 2.0),
+        Stock("Monopolithic Obelisks", 130, 3.25),
+        Stock("Fleep enterprises", 60, 6.5)
+    };
+
+    cout << "Stock holdings:\n";
+    int st;
+    for (st = 0; st < STKS; st++)
+        cout << stocks[st];
+        //stocks[st].show();
+
+    //Установка указателя на первый элемент
+    const Stock *top = &stocks[0];
+    for (st = 1; st < STKS; st++)
+        top = &top->topval(stocks[st]);
+
+    cout << "\nСамый ценный пакет акций:\n";
+    cout << *top;
+    //top->show();*/
+
+    //Упражнение 4
+    /*using std::cin;
+    using std::cout;
+    Stack st(30);
+    Stack dt;
+    char ch;
+    unsigned long po;
+
+    for (int i = 0; i < st.getSize(); i++)
+        st.push(i);
+
+    cout << "st = " << st;
+    cout << "dt = " << dt;
+
+    dt = st;
+    cout << "dt = " << dt;*/
+
+    //Item1 it;
+    //st.pop(it);
+    //st.pop(it);
+    //st.pop(it);
+
+   /* while (st.isempty()) {
+        for (Item1 i = 3; i > -1; i--)
+            st.pop(i);
+    }*/
+
+    /*cout << "Введите А - чтобы добавить заказ, Р - обработать заказ,"
+            "Q - завершить.\n";
+    while (cin >> ch && toupper(ch) != 'Q')
+    {
+        while (cin.get() != '\n')
+            continue;
+        if (!isalpha(ch))
+        {
+            cout << '\a';
+            continue;
+        };
+        switch (ch) {
+        case 'A':
+        case 'a':
+            cout << "Введите номер для добавления: ";
+            cin >> po;
+            if (st.isfull())
+                cout << "Стек уже полон\n";
+            else
+               st.push(po);
+            break;
+        case 'P':
+        case 'p':
+            if (st.isempty())
+                cout << "Стек уже пуст\n";
+            else
+            {
+                st.pop(po);
+                cout << "PO #" << po << "удален\n";
+            }
+            break;
+        default:
+            break;
+        }
+        cout << "Введите А - чтобы добавить заказ, Р - обработать заказ,"
+                "Q - завершить.\n";
+    };*/
+    //cout << "Bye!\n";
+
+    //Упражнение 5
+    //Использование интерфейса queue
+    srand(time(0));
+    cout << "Введите максимальный размер очереди: ";
+    int qs;
+    cin >> qs;
+    Queue line(qs);
+    cout << "Введите количество эмулируемых часов: ";
+    int hours;
+    cin >> hours;
+
+    long cyclelimit = MIN_PER_HR * hours;
+    cout << "Введите количество клиентов в час: ";
+    double perhour;
+    cin >> perhour;
+    double min_per_cust;    //среднее время между появлениями
+    min_per_cust = MIN_PER_HR / perhour;
+    Item temp;              //данные нового клиента
+    long turnaways = 0;     //не допущены в полную очередь
+    long customers = 0;     //присоединены к очереди
+    long served = 0;        //обслужены во время эмуляции
+    long sum_line = 0;      //общая длина очереди
+    int wait_time = 0;      //время ддо освобождения банкомата
+    long line_wait = 0;     //ообщее время в очереди
+
+    //Запуск моделирования
+    for (int cycle = 0; cycle < cyclelimit; cycle++)
+    {
+        if (newcustomer(min_per_cust))  //есть подошедший клиент
+        {
+            if (line.isfull())
+                turnaways++;
+            else
+            {
+                customers++;
+                temp.set(cycle);
+                line.enqueue(temp);
+            }
+        }
+
+        if (wait_time <= 0 && !line.isempty() )
+        {
+            line.dequeue(temp);                 //обслуживание след клиента
+            wait_time = temp.ptime();
+            line_wait += cycle - temp.when();
+            served++;
+        }
+
+        if (wait_time > 0)
+            wait_time--;
+        sum_line += line.queuecount();
+    }
+
+    //Вывод результатов
+    if (customers > 0)
+    {
+        cout << "Принято клиентов: " << customers << endl;
+        cout << "обслужено клиентов: " << served << endl;
+        cout << "не принято клиентов: " << turnaways << endl;
+        cout << "средний размер очереди: ";
+        cout.precision(2);
+        cout.setf(ios_base::fixed, ios_base::floatfield);
+        cout << double (sum_line/cyclelimit) << endl;
+        cout << "среднее время ожидания " << double (line_wait / served ) << " минут\n";
+    }
+    else
+        cout << "Нет посетителей!\n";
 
     return 0;
 }

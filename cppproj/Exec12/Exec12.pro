@@ -8,11 +8,15 @@ SOURCES += main.cpp \
     string1.cpp \
     vect.cpp \
     queue.cpp \
-    cow.cpp
+    cow.cpp \
+    stock00.cpp \
+    stack00.cpp
 
 HEADERS += \
     stringbad.h \
     string1.h \
     vect.h \
     queue.h \
-    cow.h
+    cow.h \
+    stock00.h \
+    stack00.h
