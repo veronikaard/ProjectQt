@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    tabtenn0.cpp
+    tabtenn0.cpp \
+    brass.cpp
 
 HEADERS += \
-    tabtenn0.h
+    tabtenn0.h \
+    brass.h
