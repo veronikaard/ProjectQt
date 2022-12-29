@@ -7,10 +7,14 @@ SOURCES += main.cpp \
     #tabtenn0.cpp \
     #brass.cpp \
     acctabc.cpp \
-    dma.cpp
+    dma.cpp \
+    cd.cpp \
+    port.cpp
 
 HEADERS += \
     #tabtenn0.h \
     #brass.h \
     acctabc.h \
-    dma.h
+    dma.h \
+    cd.h \
+    port.h

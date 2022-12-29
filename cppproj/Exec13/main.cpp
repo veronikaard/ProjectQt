@@ -3,10 +3,13 @@
 //#include "brass.h"
 #include "acctabc.h"
 #include "dma.h"
+#include "cd.h"
+#include "port.h"
 
 using namespace std;
 const int CLIENTS = 4;
 
+void Bravo(const Cd &disk);
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -175,7 +178,7 @@ int main()
     //Listing 13.16
     //Наследование, друзья и динамическое выделение памяти
 
-    using std::cout;
+    /*using std::cout;
     using std::endl;
 
     baseDMA shirt("Portabelly", 8);
@@ -192,7 +195,47 @@ int main()
     map2 = map;
     cout << "hasDMA assignment: \n" << map2 << endl;
 
-    cout << "Done.\n";
+    cout << "Done.\n";*/
+
+    //Упражнение 1 - 2
+    /*Cd c1("Beatles", "Capitol", 14, 35.5);
+    Classic c2 = Classic("Alfred Brendel", "Philips",
+                         "Piano Sonata in B flat, Fantasia in C", 2, 57.17);
+
+    Cd *pcd = &c1;
+    cout << "\nНепосредственное использование объектов:\n";
+    c1.Report();
+    cout << endl;
+    c2.Report();
+
+    cout << "\nИспользование указателя на объекты типа cd*: \n";
+    pcd->Report();
+    cout << endl;
+    pcd = &c2;
+    pcd->Report();
+
+    cout << "\nВызов функции с аргументом-ссылкой на Cd: \n";
+    Bravo(c1);
+    cout << endl;
+    Bravo(c2);
+
+    cout << "\nТестирование присваивания: \n";
+    Classic copy;
+    copy = c2;
+    copy.Report();*/
+
+    //Упражнение 3
+    //Упражнение 4
+    Port port("Gold", "Tawny", 5);
+    VintagePort vport("Family", 12, "The Noble", 1998);
+    Port p(vport);
+    cout << p << endl;
+    p.Show();
 
     return 0;
+}
+
+void Bravo(const Cd &disk)
+{
+    disk.Report();
 }
