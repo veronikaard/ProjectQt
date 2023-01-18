@@ -1,38 +1,43 @@
-#include "studentc.h"
+#include "studenti.h"
+
 using std::ostream;
 using std::endl;
 using std::istream;
 using std::string;
 
-//Открытые методы
 double Student::Average() const
 {
-    if (scores.size() > 0)
-        return scores.sum()/scores.size();
+    if (ArrayDb::size() > 0)
+        return ArrayDb::sum()/ArrayDb::size();
     else
         return 0;
 }
 
 const string & Student::Name() const
 {
-    return name;
+    return (const string &) *this;
 }
 
 double & Student::operator[](int i)
 {
-    return scores[i];
+    return ArrayDb::operator[](i);
+}
+
+double Student::operator[](int i) const
+{
+    return ArrayDb::operator[](i);
 }
 
 //Закрытый метод
 ostream & Student::arr_out(ostream &os) const
 {
     int i;
-    int lim = scores.size();
+    int lim = ArrayDb::size();
     if (lim > 0)
     {
         for (i = 0; i < lim; i++)
         {
-            os << scores[i] << " ";
+            os << ArrayDb::operator[](i) << " ";
             if (i % 5 == 4)
                 os << endl;
         }
@@ -47,27 +52,19 @@ ostream & Student::arr_out(ostream &os) const
 //Друзья
 istream & operator>>(istream &is, Student &stu)
 {
-    is >> stu.name;
+    is >> (string &) stu;
     return is;
 }
 
 istream & getline(istream &is, Student &stu)
 {
-    getline(is, stu.name);
+    getline(is, (string &) stu);
     return is;
 }
 
 ostream & operator<<(ostream &os, Student &stu)
 {
-    os << "Оценки для " << stu.name << ":\n";
+    os << "Оценки для " << (const string &)stu << ":\n";
     stu.arr_out(os);
     return os;
 }
-
-
-
-
-
-
-
-

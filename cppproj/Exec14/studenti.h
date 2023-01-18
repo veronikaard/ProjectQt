@@ -1,5 +1,5 @@
-#ifndef STUDENTC_H
-#define STUDENTC_H
+#ifndef STUDENTI_H
+#define STUDENTI_H
 
 #include <iostream>
 #include <string>
@@ -7,26 +7,24 @@
 
 using std::string;
 
-class Student
+class Student : private std::string, private std::valarray<double>
 {
 private:
     typedef std::valarray<double> ArrayDb;
-    std::string name;
-    ArrayDb scores;
 
     //Закрытый метод для вывода оценок
     std::ostream &arr_out(std::ostream &os) const;
 public:
-    Student() : name("Null Student"), scores(){}
+    Student() : string("Null Student"), ArrayDb(){}
     explicit Student(const std::string &s)
-        : name(s), scores() {}
-    explicit Student(int n) : name("Nully"), scores(n) {}
+        : string(s), ArrayDb() {}
+    explicit Student(int n) : string("Nully"), ArrayDb(n) {}
     Student (const std::string &s, int n)
-        : name(s), scores(n) {}
+        : string(s), ArrayDb(n) {}
     Student(const std::string &s, const ArrayDb &a)
-        : name(s), scores(a) {}
+        : string(s), ArrayDb(a) {}
     Student (const char *str, const double *pd, int n)
-        : name(str), scores(pd, n) {}
+        : string(str), ArrayDb(pd, n) {}
     ~Student() {}
     double Average() const;
     const std::string &Name() const;
@@ -40,4 +38,4 @@ public:
     friend std::ostream &operator<<(std::ostream &os, Student &stu);
 };
 
-#endif // STUDENTC_H
+#endif // STUDENTI_H
