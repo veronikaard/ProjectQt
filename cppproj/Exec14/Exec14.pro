@@ -7,10 +7,12 @@ SOURCES += main.cpp \
     #studentc.cpp \
     studenti.cpp \
     #worker0.cpp \
-    workermi.cpp
+    workermi.cpp \
+    stack.cpp
 
 HEADERS += \
     #studentc.h \
     studenti.h \
    # worker0.h \
-    workermi.h
+    workermi.h \
+    stack.h

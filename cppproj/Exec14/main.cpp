@@ -5,6 +5,7 @@
 #include "studenti.h"
 //#include "worker0.h"
 #include "workermi.h"
+#include "stack.h"
 
 using std::cin;
 using std::cout;
@@ -55,7 +56,7 @@ int main()
     }*/
 
     //Listing 14.12
-    Worker *lolas[SIZE];
+    /*Worker *lolas[SIZE];
     int ct;
     for (ct = 0; ct < SIZE; ct++)
     {
@@ -96,7 +97,55 @@ int main()
     }
 
     for (int i = 0; i < ct; i++)
-        delete lolas[i];
+        delete lolas[i];*/
+
+    //Listing
+    Stack<int> kernels;         //Создание стека для значений int
+    Stack<string> colonels;     //Создание стека для объектов string
+
+    using std::cin;
+    using std::cout;
+    //Stack<std::string> st;      //Создание пустого стека
+    Stack<char *> st;
+    char ch;
+    char * po;
+    cout << "Введите А - чтобы добавить заказ, Р - обработать заказ,"
+            "Q - завершить.\n";
+    while (cin >> ch && toupper(ch) != 'Q')
+    {
+        while (cin.get() != '\n')
+            continue;
+        if (!isalpha(ch))
+        {
+            cout << '\a';
+            continue;
+        };
+        switch (ch) {
+        case 'A':
+        case 'a':
+            cout << "Введите номер для добавления: ";
+            cin >> po;
+            if (st.isfull())
+                cout << "Стек уже полон\n";
+            else
+               st.push(po);
+            break;
+        case 'P':
+        case 'p':
+            if (st.isempty())
+                cout << "Стек уже пуст\n";
+            else
+            {
+                st.pop(po);
+                cout << "PO #" << po << "удален\n";
+            }
+            break;
+        default:
+            break;
+        }
+        cout << "Введите А - чтобы добавить заказ, Р - обработать заказ,"
+                "Q - завершить.\n";
+    };
 
     cout << "Bye.\n";
 
