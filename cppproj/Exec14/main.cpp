@@ -6,6 +6,9 @@
 //#include "worker0.h"
 #include "workermi.h"
 #include "stack.h"
+#include <cstdlib>
+#include <ctime>
+#include <arraytp.h>
 
 using std::cin;
 using std::cout;
@@ -18,6 +21,7 @@ const int quizzes = 5;
 
 const int LIM = 4;
 const int SIZE = 5;
+const int Num = 10;
 
 int main()
 {
@@ -100,7 +104,7 @@ int main()
         delete lolas[i];*/
 
     //Listing
-    Stack<int> kernels;         //Создание стека для значений int
+    /*Stack<int> kernels;         //Создание стека для значений int
     Stack<string> colonels;     //Создание стека для объектов string
 
     using std::cin;
@@ -145,7 +149,78 @@ int main()
         }
         cout << "Введите А - чтобы добавить заказ, Р - обработать заказ,"
                 "Q - завершить.\n";
-    };
+    };*/
+
+    //Listing 14.16
+    /*std::srand(std::time(0));
+    using std::cin;
+    using std::cout;
+
+    cout << "Введите размер стека: ";
+    int stacksize;
+    std::cin >> stacksize;
+
+    Stack<const char *> st(stacksize);
+
+    //Входной ящик
+    const char * in[Num] = {
+        " 1: Hank Gilgamesh", " 2: Kiki Ishtar",
+        " 3: Betty Rocker", " 4: Ian Flagranti",
+        " 5: Wolfgang Kibble", " 6: Portia Koop",
+        " 7: Joy Almondo", " 8: Xaverie Paprika",
+        " 9: Juan Moore", " 10: Misha Mache"
+    } ;
+
+    //Выходной ящик
+   const char * out[Num];
+   int processed = 0;
+   int nextin = 0;
+   while (processed < Num)
+   {
+       if (st.isempty())
+           st.push(in[nextin++]);
+       else if (st.isfull())
+               st.pop(out[processed++]);
+       else if (std::rand() % 2 && nextin < Num)
+           st.push(in[nextin++]);
+       else
+           st.pop(out[processed++]);
+   }
+
+   for (int i = 0; i < Num; i++)
+       cout << out[i] << endl;*/
+
+    //Listing 14.18
+    using std::cin;
+    using std::cout;
+
+    ArrayTP<int, 10> sums;
+    ArrayTP<double, 10> aves;
+    ArrayTP<ArrayTP<int, 5>, 10> twodee;
+
+    int i, j;
+    for (i = 0; i < 10; i ++)
+    {
+        sums[i] = 0;
+        for (j = 0; j < 5; j++)
+        {
+            twodee[i][j] = (i + 1) * (j + 1);
+            sums[i] += twodee[i][j];
+        }
+        aves[i] = (double) sums[i] / 10;
+    }
+
+    for (i = 0; i < 10; i++)
+    {
+        for (j = 0; j < 5; j++)
+        {
+            cout.width(2);
+            cout << twodee[i][j] << ' ';
+        }
+        cout << ": sum = ";
+        cout.width(3);
+        cout << sums[i] << ", average = " << aves[i] << endl;
+    }
 
     cout << "Bye.\n";
 
