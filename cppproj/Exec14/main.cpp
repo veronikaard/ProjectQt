@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <arraytp.h>
+#include "pairs.h"
 
 using std::cin;
 using std::cout;
@@ -191,7 +192,7 @@ int main()
        cout << out[i] << endl;*/
 
     //Listing 14.18
-    using std::cin;
+    /*using std::cin;
     using std::cout;
 
     ArrayTP<int, 10> sums;
@@ -220,7 +221,33 @@ int main()
         cout << ": sum = ";
         cout.width(3);
         cout << sums[i] << ", average = " << aves[i] << endl;
-    }
+    }*/
+
+    //Listing 14.19
+    using std::endl;
+    using std::cout;
+    using std::string;
+    Pair<string, int> ratings[4] =
+    {
+        Pair<string, int>("The Purpled Duck", 5),
+        Pair<string, int>("Frisco Al Fresco", 4),
+        Pair<string, int>("Cafe Souffle", 5),
+        Pair<string, int>("Bertie's Eats", 3)
+    };
+
+    int joints = sizeof(ratings) / sizeof(Pair<string, int>);
+    cout << "Рейтинг закусочных:\n";
+    for (int i = 0; i < joints; i++)
+        cout << ratings[i].second() << ":\t "
+             << ratings[i].first() << endl;
+
+    cout << "Пересмотренный рейтинг:\n";
+    ratings[3].first() = "Berty's Fab Eats";
+    ratings[3].second() = 6;
+
+    for (int i = 0; i < joints; i++)
+        cout << ratings[i].second() << ":\t "
+             << ratings[i].first() << endl;
 
     cout << "Bye.\n";
 

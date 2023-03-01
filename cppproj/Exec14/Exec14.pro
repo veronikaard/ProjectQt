@@ -15,4 +15,5 @@ HEADERS += \
    # worker0.h \
     workermi.h \
     stack.h \
-    arraytp.h
+    arraytp.h \
+    pairs.h

@@ -55,7 +55,8 @@ OBJECTS       = release/main.o \
 DIST          =  studenti.h \
 		workermi.h \
 		stack.h \
-		arraytp.h ..\Exec14\main.cpp \
+		arraytp.h \
+		pairs.h ..\Exec14\main.cpp \
 		..\Exec14\studenti.cpp \
 		..\Exec14\workermi.cpp
 QMAKE_TARGET  = Exec14
@@ -107,7 +108,9 @@ compiler_clean:
 
 release/main.o: ../Exec14/main.cpp ../Exec14/studenti.h \
 		../Exec14/workermi.h \
-		../Exec14/stack.h
+		../Exec14/stack.h \
+		../Exec14/arraytp.h \
+		../Exec14/pairs.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\Exec14\main.cpp
 
 release/studenti.o: ../Exec14/studenti.cpp ../Exec14/studenti.h
