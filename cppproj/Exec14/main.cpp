@@ -24,6 +24,74 @@ const int LIM = 4;
 const int SIZE = 5;
 const int Num = 10;
 
+template <typename T>
+class beta
+{
+  private:
+    template <typename V>           //вложенный шаблонный класс-член
+    class hold
+    {
+      private:
+        V val;
+    public:
+        hold(V v = 0) : val(v) {}
+        void show() const {cout << val << endl;}
+        V Value() const {return val;}
+    };
+    hold <T> q;                     //шаблонный объект
+    hold <int> n;                   //шаблонный объект
+public:
+    beta(T t, int i) : q(t), n(i){}
+    template<typename U>            //шаблонный метод
+    U blab(U u, T t){return (n.Value() + q.Value())*u/t;}
+    void Show() const {q.show(); n.show();}
+};
+
+//шаблоны как параметры
+template <template <typename T> class Thing>
+class Crab
+{
+private:
+    Thing<int> s1;
+    Thing<double> s2;
+public:
+    Crab(){};
+    bool push(int a, double x) {return s1.push(a) && s2.push(x);}
+    bool pop(int &a, double &x) {return s1.pop(a) && s2.pop(x);}
+};
+
+template <typename T>
+class HasFriend
+{
+private:
+    T item;
+    static int ct;
+public:
+    HasFriend(const T &i) : item(i) {ct++;}
+    ~HasFriend(){ct--;}
+    friend void counts();
+    friend void reports(HasFriend<T> &);
+};
+
+template <typename T>
+int HasFriend<T>::ct = 0;
+
+void counts()
+{
+    cout << "int count: " << HasFriend<int>::ct << "; ";
+    cout << "double count: " << HasFriend<double>::ct << endl;
+}
+
+void reports(HasFriend<int> &hf)
+{
+    cout << "HasFriend<int>: " << hf.item << endl;
+}
+
+void reports(HasFriend<double> &hf)
+{
+    cout << "HasFriend<double>: " << hf.item << endl;
+}
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -224,7 +292,7 @@ int main()
     }*/
 
     //Listing 14.19
-    using std::endl;
+    /*using std::endl;
     using std::cout;
     using std::string;
     Pair<string, int> ratings[4] =
@@ -247,7 +315,48 @@ int main()
 
     for (int i = 0; i < joints; i++)
         cout << ratings[i].second() << ":\t "
-             << ratings[i].first() << endl;
+             << ratings[i].first() << endl;*/
+
+    //Listing 14.20 - шаблоны-члены
+    /*beta<double> guy(3.5, 3);
+    cout << "T установлен в double\n";
+    guy.Show();
+    cout << "V установлен в T, который double, затем V установлен в int\n";
+    cout << guy.blab(10, 2.3) << endl;
+    cout << guy.blab(10.0, 2.3) << endl;*/
+
+    //Listing 14.21 - шаблоны как параметры
+    /*Crab<Stack> nebula;
+    int ni;
+    double nb;
+    cout << "¬ведите пару чисел int и double:\n";
+    while (cin >> ni >> nb && ni > 0 && nb > 0) {
+        if (!nebula.push(ni, nb))
+            break;
+    }
+
+    while (nebula.pop(ni, nb))
+        cout << ni << ", " << nb << endl;*/
+
+    //Listing 14.22 - шаблонный класс с нешаблонными друзь€ми
+    cout << "ќбъекты пока не объ€влены\n";
+    counts();
+
+    HasFriend<int> hfi1(10);
+    cout << "Int 1 declared: ";
+    counts();
+
+    HasFriend<int> hfi2(10);
+    cout << "Int 2 declared: ";
+    counts();
+
+    HasFriend<double> hfdb(10.5);
+    cout << "Double declared: ";
+    counts();
+
+    reports(hfi1);
+    reports(hfi2);
+    reports(hfdb);
 
     cout << "Bye.\n";
 
