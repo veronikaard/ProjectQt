@@ -24,7 +24,7 @@ const int LIM = 4;
 const int SIZE = 5;
 const int Num = 10;
 
-template <typename T>
+/*template <typename T>
 class beta
 {
   private:
@@ -45,10 +45,10 @@ public:
     template<typename U>            //шаблонный метод
     U blab(U u, T t){return (n.Value() + q.Value())*u/t;}
     void Show() const {q.show(); n.show();}
-};
+};*/
 
 //шаблоны как параметры
-template <template <typename T> class Thing>
+/*template <template <typename T> class Thing>
 class Crab
 {
 private:
@@ -74,9 +74,8 @@ public:
 };
 
 template <typename T>
-int HasFriend<T>::ct = 0;
-
-void counts()
+int HasFriend<T>::ct = 0;*/
+/*void counts()
 {
     cout << "int count: " << HasFriend<int>::ct << "; ";
     cout << "double count: " << HasFriend<double>::ct << endl;
@@ -90,6 +89,58 @@ void reports(HasFriend<int> &hf)
 void reports(HasFriend<double> &hf)
 {
     cout << "HasFriend<double>: " << hf.item << endl;
+}*/
+
+//Шаблонные друзья для шаблонного класса
+//Прототипы шаблонов
+/*template <typename T> void counts();
+template <typename T> void reports(T &);
+
+//Шаблонный класс
+template <typename TT>
+class HasFriendT
+{
+private:
+    TT item;
+    static int ct;
+public:
+    HasFriendT(const TT &i) : item(i) {ct++;}
+    ~HasFriendT() {ct--;}
+    friend void counts<TT>();
+    friend void reports<>(HasFriendT<TT> &);
+};
+
+template <typename T>
+int HasFriendT<T>::ct = 0;
+
+//Определение дружественных функций для шаблона
+template <typename T>
+void counts()
+{
+    cout << "Размер шаблона: " << sizeof(HasFriendT<T>) << "; ";
+    cout << "counts() из шаблона: " << HasFriendT<T>::ct << endl;
+}
+
+template <typename T>
+void reports(T &hf)
+{
+    cout << hf.item << endl;
+}*/
+
+//Несвязанная шаблонная функция, дружественная шаблонному классу
+template <typename T>
+class ManyFriend
+{
+private:
+    T item;
+public:
+    ManyFriend(const T &i): item(i) {}
+    template <typename C, typename D> friend void show2(C &, D &);
+};
+
+template <typename C, typename D> void show2(C &c, D &d)
+{
+    cout << c.item << ", " << d.item << endl;
 }
 
 int main()
@@ -339,7 +390,7 @@ int main()
         cout << ni << ", " << nb << endl;*/
 
     //Listing 14.22 - шаблонный класс с нешаблонными друзьями
-    cout << "Объекты пока не объявлены\n";
+    /*cout << "Объекты пока не объявлены\n";
     counts();
 
     HasFriend<int> hfi1(10);
@@ -356,7 +407,27 @@ int main()
 
     reports(hfi1);
     reports(hfi2);
+    reports(hfdb);*/
+
+    //Listing 14.23 - Шаблонные друзья для шаблонного класса
+    /*counts<int>();
+    counts<double>();
+    HasFriendT<int> hfi1(10);
+    HasFriendT<int> hfi2(20);
+    HasFriendT<double> hfdb(10.5);
+    reports(hfi1);
+    reports(hfi2);
     reports(hfdb);
+    counts<int>();
+    counts<double>();*/
+
+    //Listing 14.24 - Несвязанная шаблонная функция, дружественная
+    //                шаблонному классу
+    ManyFriend<int> hfi1(10);
+    ManyFriend<int> hfi2(20);
+    ManyFriend<double> hfdb(10.5);
+    show2(hfi1, hfi2);
+    show2(hfdb, hfi2);
 
     cout << "Bye.\n";
 
